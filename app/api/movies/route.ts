@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
-const TOKEN = process.env.TMDB_READ_ACCESS_TOKEN;
+const TOKEN = process.env.ACCESSTOKEN;
 
 export const GET = async (request: NextRequest) => {
 	try {

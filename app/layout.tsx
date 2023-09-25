@@ -1,4 +1,3 @@
-'use client';
 import { Navbar } from '@/components/Navbar/navbar';
 import type { Metadata } from 'next';
 import { Urbanist } from 'next/font/google';

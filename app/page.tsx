@@ -1,13 +1,6 @@
-'use client';
 import ButtonLink from '@/components/shared/Buttons/ButtonLink';
 import { TubeFlix } from '@/components/svgs/TubeFlix';
 import { motion } from 'framer-motion';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-	title: 'Tube-Flix - Home',
-	description: 'Movie Streaming platform - A Netfflix Clone',
-};
 
 const Page = () => {
 	return (

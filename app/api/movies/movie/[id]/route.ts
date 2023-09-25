@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const API_KEY = process.env.TMDB_API_KEY;
+const API_KEY = process.env.APIKEY;
 
 type Params = {
 	params: {
