@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+nav a {
+	@apply py-4 px-4
+}
+
+nav a .active {
+	@apply text-accent-dark rounded-md
+}
+
+nav a svg {
+	font-size: 40px;
+	cursor: pointer;
+	/* @apply text-red-500 */
+	@apply text-slate-600 cursor-pointer text-6xl
+}
+
+nav div span {
+	@apply inline-block
+}
+
+::-webkit-scrollbar {
+	-webkit-appearance: none;
+	appearance: none;
+}
