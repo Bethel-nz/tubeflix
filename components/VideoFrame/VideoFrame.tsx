@@ -18,7 +18,7 @@ const VideoFrame: React.FC<VideoFrameProps> = ({ imdb_Id, tmdb_Id }) => {
 			width='100%'
 			height='100%'
 			allowFullScreen
-			className='rounded-sm shadow-lg  h-[60vh] w-fit md:w-screen md:h-screen'
+			className='absolute inset-0 rounded-md shadow-lg'
 		/>
 	);
 };

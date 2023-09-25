@@ -1,3 +1,4 @@
+'use client';
 import { Search } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdOutlineMovieFilter } from 'react-icons/md';
