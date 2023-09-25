@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 
 export default async function Movies({ searchParams }: Props) {
 	const { page } = searchParams;
-	const moviesData = await fetchMovies(page);
+	const moviesData = await fetchMovies();
 	const { data } = moviesData;
 	const { results: movies } = data;
 

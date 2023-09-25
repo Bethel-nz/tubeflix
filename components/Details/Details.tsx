@@ -78,7 +78,7 @@ const Details = ({ movie }: details) => {
 								</div>
 								<div className='mt-12'>
 									<h2 className='font-bold text-2xl'>Trailers:</h2>
-									<ul>
+									<ul className='h-60 overflow-y-scroll'>
 										{movie.videos.results.map((video) => (
 											<li key={video.key} className=''>
 												<Link

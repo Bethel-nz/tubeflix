@@ -5,9 +5,9 @@ const TOKEN = process.env.ACCESSTOKEN;
 
 export const GET = async (request: NextRequest) => {
 	try {
-		const search = request.nextUrl.searchParams.get('q');
+		const query = request.nextUrl.searchParams.get('q');
 		const reqPage = request.nextUrl.searchParams.get('page');
-		const url = `https://api.themoviedb.org/3/search/movie?query=${search}&page=${reqPage}&include_adult=false`;
+		const url = `https://api.themoviedb.org/3/search/movie?query=${query}&page=${reqPage}&include_adult=false`;
 		const options = {
 			method: 'GET',
 			headers: {
