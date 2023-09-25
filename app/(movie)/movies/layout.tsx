@@ -1,4 +1,10 @@
 import { Props } from '@/types/types';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Tube-Flix Movies Page',
+	description: 'Movie Streaming platform - A Netflix Clone',
+};
 
 const Movielayout = ({ children }: Props) => {
 	return (
