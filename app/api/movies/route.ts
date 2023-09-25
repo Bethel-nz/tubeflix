@@ -6,7 +6,6 @@ const TOKEN = process.env.ACCESSTOKEN;
 export const GET = async (request: NextRequest) => {
 	try {
 		const reqPage = request.nextUrl.searchParams.get('page');
-
 		const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${reqPage}`;
 		const options = {
 			method: 'GET',
