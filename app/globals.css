@@ -3,18 +3,22 @@
 @tailwind utilities;
 
 nav a {
-	@apply py-4 px-4
+	@apply px-4
+}
+
+nav a svg {
+	@apply text-slate-600 cursor-pointer text-6xl
 }
 
 nav a .active {
 	@apply text-accent-dark rounded-md
 }
 
-nav a svg {
+nav a + a svg {
 	font-size: 40px;
 	cursor: pointer;
 	/* @apply text-red-500 */
-	@apply text-slate-600 cursor-pointer text-6xl
+	@apply mt-4
 }
 
 nav div span {

@@ -2,7 +2,6 @@ import SearchBar from '@/components/searchBar/SearchBar';
 import DateComponent from '@/components/shared/Date/FormattedDate';
 import { Pagination } from '@/components/shared/Pagination/Pagination';
 import CardSkeleton from '@/components/shared/Skeleton/CardSkeleton/CardSkeleton';
-import ImageSkeleton from '@/components/shared/Skeleton/ImageSkeleton/ImageSkeleton';
 import getResult from '@/lib/getResult';
 import { Movie } from '@/types/types';
 import { Metadata } from 'next';
@@ -48,7 +47,7 @@ export default async function Movies({ searchParams }: Props) {
 					{result?.map((movie: Movie) => (
 						<div key={movie.id}>
 							<div
-								className={`rounded-md w-full md:w-72 md:h-full h-[28em] relative group overflow-hidden shadow-md shadow-primary/-700`}
+								className={`rounded-md w-72 md:h-full h-[28em] relative group overflow-hidden shadow-md shadow-primary/-700`}
 							>
 								<div>
 									{movie.poster_path || movie.backdrop_path ? (
@@ -63,7 +62,9 @@ export default async function Movies({ searchParams }: Props) {
 											className={`object-fit-contain rounded-md h-full w-full`}
 										/>
 									) : (
-										<ImageSkeleton />
+										<div>
+											<p>Search for a movie</p>
+										</div>
 									)}
 								</div>
 								<div className='bg-slate-900/30 border-2 border-gray-400/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md rounded-r-md absolute -bottom-10 p-4 h-40 w-full md:group-hover:bottom-0 opacity-100 md:opacity-0 md:group-hover:opacity-100  transition-all ease-bezier duration-500 delay-300'>

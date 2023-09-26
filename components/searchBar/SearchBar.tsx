@@ -19,7 +19,7 @@ const SearchBar = ({ defaultValue }: props) => {
 	return (
 		<div className='w-full flex'>
 			<input
-				className='mx-auto rounded-full w-[24em] md:w-[40em] h-14 px-4 mb-8 mt-4 text-gray-950 font-bold ring-4 border-2 focus-within:border-0 ring-white focus-within:ring-accent-dark ring-offset-2'
+				className='mx-auto rounded-full w-[20em] md:w-[30em] h-12 px-4 mb-8 mt-4 text-gray-950 font-bold ring-4 border-2 focus-within:border-0 ring-white focus-within:ring-accent-dark ring-offset-2'
 				type='text'
 				placeholder='Search...'
 				defaultValue={defaultValue}

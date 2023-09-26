@@ -114,7 +114,7 @@ export const PaginationComponent: React.FC<Props> = ({
 							<ChevronRight />
 						</button>
 					</div>
-					<div className='md:hidden bg-slate-900/30  border-gray-400/40 bg-clip-padding backdrop-filter flex justify-center items-center mt-8 gap-x-4 border-2 w-80 rounded-full mx-auto  bg-opacity-70 backdrop-blur-md h-full p-6'>
+					<div className='md:hidden bg-slate-900/30  border-gray-400/40 bg-clip-padding backdrop-filter flex justify-center items-center mt-8 gap-x-4 border-2 w-72 rounded-full mx-auto  bg-opacity-70 backdrop-blur-md h-full p-6'>
 						<button
 							onClick={() => handlePagination(currentPage - 1)}
 							type='button'

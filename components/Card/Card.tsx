@@ -51,7 +51,7 @@ const Card = ({ movie }: Card) => {
 			<Tilt options={defaultOptions}>
 				<Suspense fallback={<CardSkeleton />}>
 					<div
-						className={`rounded-md w-full md:w-72 md:h-full h-[28em] relative group overflow-hidden shadow-md shadow-primary/-700`}
+						className={`rounded-md w-72 md:h-full h-[26em] relative group overflow-hidden shadow-md shadow-primary/-700`}
 					>
 						<div>
 							<Image
