@@ -2,6 +2,7 @@ import SearchBar from '@/components/searchBar/SearchBar';
 import DateComponent from '@/components/shared/Date/FormattedDate';
 import { Pagination } from '@/components/shared/Pagination/Pagination';
 import CardSkeleton from '@/components/shared/Skeleton/CardSkeleton/CardSkeleton';
+import ImageSkeleton from '@/components/shared/Skeleton/ImageSkeleton/ImageSkeleton';
 import getResult from '@/lib/getResult';
 import { Movie } from '@/types/types';
 import { Metadata } from 'next';
@@ -36,11 +37,6 @@ export default async function Movies({ searchParams }: Props) {
 			{!q ? (
 				<div>
 					<p className='text-2xl text-white text-center mb-8'>Search A Movie</p>
-					<div>
-						<div className='flex flex-wrap gap-4 items-center justify-center reative scroll-smooth'>
-							{skeletonArray}
-						</div>
-					</div>
 				</div>
 			) : (
 				<div className='flex flex-wrap gap-4 items-center justify-center'>
@@ -62,9 +58,7 @@ export default async function Movies({ searchParams }: Props) {
 											className={`object-fit-contain rounded-md h-full w-full`}
 										/>
 									) : (
-										<div>
-											<p>Search for a movie</p>
-										</div>
+										<ImageSkeleton />
 									)}
 								</div>
 								<div className='bg-slate-900/30 border-2 border-gray-400/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md rounded-r-md absolute -bottom-10 p-4 h-40 w-full md:group-hover:bottom-0 opacity-100 md:opacity-0 md:group-hover:opacity-100  transition-all ease-bezier duration-500 delay-300'>
