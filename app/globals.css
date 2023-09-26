@@ -29,3 +29,7 @@ nav div span {
 	-webkit-appearance: none;
 	appearance: none;
 }
+
+* {
+	@apply scroll-smooth
+}
