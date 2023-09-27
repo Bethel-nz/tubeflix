@@ -6,7 +6,7 @@ const containerVariants: Variants = {
 	initial: {},
 	animate: {
 		transition: {
-			staggerChildren: 0.1, // Delay between animating children
+			staggerChildren: 0.1,
 		},
 	},
 };
@@ -22,7 +22,7 @@ const pathVariants: Variants = {
 		x: 0,
 		pathLength: 1,
 		transition: {
-			duration: 0.5, // Animation duration for each path
+			duration: 0.5,
 		},
 	},
 };
