@@ -52,7 +52,7 @@ export default async function Movies({ searchParams }: Props) {
 												'https://image.tmdb.org/t/p/w500' +
 												(movie.poster_path || movie.backdrop_path)
 											}
-											alt={`${movie.title}'s poster card`}
+											alt={`${movie.title} poster card`}
 											width={500}
 											height={500}
 											className={`object-fit-contain rounded-md h-full w-full`}

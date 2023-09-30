@@ -1,0 +1,125 @@
+Date : 2023-09-29 22:17:54
+Directory : e:\tube-flix
+Total : 53 files,  6005 codes, 27 comments, 185 blanks, all 6217 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          2 |      4,616 |          0 |          2 |      4,618 |
+| TypeScript JSX     |         30 |        986 |         19 |        120 |      1,125 |
+| TypeScript         |         11 |        296 |          2 |         36 |        334 |
+| JSON with Comments |          2 |         32 |          4 |          2 |         38 |
+| CSS                |          1 |         27 |          1 |          7 |         35 |
+| Markdown           |          1 |         21 |          0 |         14 |         35 |
+| XML                |          4 |         15 |          0 |          1 |         16 |
+| JavaScript         |          2 |         12 |          1 |          3 |         16 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                 |         53 |      6,005 |         27 |        185 |      6,217 |
+| . (Files)                                                                         |          8 |      4,714 |          6 |         23 |      4,743 |
+| app                                                                               |         18 |        436 |          2 |         66 |        504 |
+| app (Files)                                                                       |          3 |         64 |          1 |         14 |         79 |
+| app\(movie)                                                                       |         12 |        306 |          0 |         40 |        346 |
+| app\(movie) (Files)                                                               |          1 |         15 |          0 |          3 |         18 |
+| app\(movie)\favourite                                                             |          1 |          4 |          0 |          2 |          6 |
+| app\(movie)\movies                                                                |          7 |        181 |          0 |         26 |        207 |
+| app\(movie)\movies (Files)                                                        |          4 |        105 |          0 |         16 |        121 |
+| app\(movie)\movies\movie                                                          |          3 |         76 |          0 |         10 |         86 |
+| app\(movie)\movies\movie (Files)                                                  |          1 |         11 |          0 |          2 |         13 |
+| app\(movie)\movies\movie\[id]                                                     |          2 |         65 |          0 |          8 |         73 |
+| app\(movie)\search                                                                |          2 |        102 |          0 |          7 |        109 |
+| app\(movie)\settings                                                              |          1 |          4 |          0 |          2 |          6 |
+| app\api                                                                           |          3 |         66 |          1 |         12 |         79 |
+| app\api\Search                                                                    |          1 |         22 |          0 |          4 |         26 |
+| app\api\movies                                                                    |          2 |         44 |          1 |          8 |         53 |
+| app\api\movies (Files)                                                            |          1 |         21 |          1 |          3 |         25 |
+| app\api\movies\movie                                                              |          1 |         23 |          0 |          5 |         28 |
+| app\api\movies\movie\[id]                                                         |          1 |         23 |          0 |          5 |         28 |
+| components                                                                        |         15 |        614 |         19 |         68 |        701 |
+| components\Card                                                                   |          1 |         85 |          1 |          6 |         92 |
+| components\Details                                                                |          1 |        132 |          0 |          6 |        138 |
+| components\Navbar                                                                 |          1 |         26 |         15 |          3 |         44 |
+| components\VideoFrame                                                             |          1 |         22 |          0 |          5 |         27 |
+| components\searchBar                                                              |          1 |         30 |          0 |          3 |         33 |
+| components\shared                                                                 |          8 |        229 |          3 |         39 |        271 |
+| components\shared\Buttons                                                         |          2 |         29 |          0 |          7 |         36 |
+| components\shared\Date                                                            |          1 |         16 |          0 |          5 |         21 |
+| components\shared\Pagination                                                      |          1 |        128 |          1 |         14 |        143 |
+| components\shared\Skeleton                                                        |          4 |         56 |          2 |         13 |         71 |
+| components\shared\Skeleton\CardSkeleton                                           |          1 |         12 |          0 |          2 |         14 |
+| components\shared\Skeleton\ImageSkeleton                                          |          1 |          8 |          0 |          2 |         10 |
+| components\shared\Skeleton\SkeletonGrid                                           |          1 |         16 |          0 |          4 |         20 |
+| components\shared\Skeleton\SkeletonPagination                                     |          1 |         20 |          2 |          5 |         27 |
+| components\svgs                                                                   |          2 |         90 |          0 |          6 |         96 |
+| data                                                                              |          1 |         75 |          0 |          3 |         78 |
+| hooks                                                                             |          2 |         23 |          0 |          9 |         32 |
+| lib                                                                               |          3 |         32 |          0 |          5 |         37 |
+| public                                                                            |          4 |         15 |          0 |          1 |         16 |
+| store                                                                             |          1 |         18 |          0 |          2 |         20 |
+| types                                                                             |          1 |         78 |          0 |          8 |         86 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                          | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| e:\tube-flix\.eslintrc.json                                                       | JSON with Comments |          3 |          0 |          1 |          4 |
+| e:\tube-flix\README.md                                                            | Markdown           |         21 |          0 |         14 |         35 |
+| e:\tube-flix\app\(movie)\favourite\page.tsx                                       | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| e:\tube-flix\app\(movie)\layout.tsx                                               | TypeScript JSX     |         15 |          0 |          3 |         18 |
+| e:\tube-flix\app\(movie)\movies\error.tsx                                         | TypeScript JSX     |         30 |          0 |          3 |         33 |
+| e:\tube-flix\app\(movie)\movies\layout.tsx                                        | TypeScript JSX     |         18 |          0 |          4 |         22 |
+| e:\tube-flix\app\(movie)\movies\loading.tsx                                       | TypeScript JSX     |         14 |          0 |          2 |         16 |
+| e:\tube-flix\app\(movie)\movies\movie\[id]\loading.tsx                            | TypeScript JSX     |         31 |          0 |          2 |         33 |
+| e:\tube-flix\app\(movie)\movies\movie\[id]\page.tsx                               | TypeScript JSX     |         34 |          0 |          6 |         40 |
+| e:\tube-flix\app\(movie)\movies\movie\page.tsx                                    | TypeScript JSX     |         11 |          0 |          2 |         13 |
+| e:\tube-flix\app\(movie)\movies\page.tsx                                          | TypeScript JSX     |         43 |          0 |          7 |         50 |
+| e:\tube-flix\app\(movie)\search\layout.tsx                                        | TypeScript JSX     |         12 |          0 |          2 |         14 |
+| e:\tube-flix\app\(movie)\search\page.tsx                                          | TypeScript JSX     |         90 |          0 |          5 |         95 |
+| e:\tube-flix\app\(movie)\settings\page.tsx                                        | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| e:\tube-flix\app\api\Search\route.ts                                              | TypeScript         |         22 |          0 |          4 |         26 |
+| e:\tube-flix\app\api\movies\movie\[id]\route.ts                                   | TypeScript         |         23 |          0 |          5 |         28 |
+| e:\tube-flix\app\api\movies\route.ts                                              | TypeScript         |         21 |          1 |          3 |         25 |
+| e:\tube-flix\app\globals.css                                                      | CSS                |         27 |          1 |          7 |         35 |
+| e:\tube-flix\app\layout.tsx                                                       | TypeScript JSX     |         21 |          0 |          4 |         25 |
+| e:\tube-flix\app\page.tsx                                                         | TypeScript JSX     |         16 |          0 |          3 |         19 |
+| e:\tube-flix\components\Card\Card.tsx                                             | TypeScript JSX     |         85 |          1 |          6 |         92 |
+| e:\tube-flix\components\Details\Details.tsx                                       | TypeScript JSX     |        132 |          0 |          6 |        138 |
+| e:\tube-flix\components\Navbar\navbar.tsx                                         | TypeScript JSX     |         26 |         15 |          3 |         44 |
+| e:\tube-flix\components\VideoFrame\VideoFrame.tsx                                 | TypeScript JSX     |         22 |          0 |          5 |         27 |
+| e:\tube-flix\components\searchBar\SearchBar.tsx                                   | TypeScript JSX     |         30 |          0 |          3 |         33 |
+| e:\tube-flix\components\shared\Buttons\Button.tsx                                 | TypeScript JSX     |          8 |          0 |          4 |         12 |
+| e:\tube-flix\components\shared\Buttons\ButtonLink.tsx                             | TypeScript JSX     |         21 |          0 |          3 |         24 |
+| e:\tube-flix\components\shared\Date\FormattedDate.tsx                             | TypeScript JSX     |         16 |          0 |          5 |         21 |
+| e:\tube-flix\components\shared\Pagination\Pagination.tsx                          | TypeScript JSX     |        128 |          1 |         14 |        143 |
+| e:\tube-flix\components\shared\Skeleton\CardSkeleton\CardSkeleton.tsx             | TypeScript JSX     |         12 |          0 |          2 |         14 |
+| e:\tube-flix\components\shared\Skeleton\ImageSkeleton\ImageSkeleton.tsx           | TypeScript JSX     |          8 |          0 |          2 |         10 |
+| e:\tube-flix\components\shared\Skeleton\SkeletonGrid\SkeletonGrid.tsx             | TypeScript JSX     |         16 |          0 |          4 |         20 |
+| e:\tube-flix\components\shared\Skeleton\SkeletonPagination\SkeletonPagination.tsx | TypeScript JSX     |         20 |          2 |          5 |         27 |
+| e:\tube-flix\components\svgs\TubeFlix.tsx                                         | TypeScript JSX     |         90 |          0 |          4 |         94 |
+| e:\tube-flix\components\svgs\index.ts                                             | TypeScript         |          0 |          0 |          2 |          2 |
+| e:\tube-flix\data\genre.ts                                                        | TypeScript         |         75 |          0 |          3 |         78 |
+| e:\tube-flix\hooks\useDebounce.tsx                                                | TypeScript JSX     |         11 |          0 |          5 |         16 |
+| e:\tube-flix\hooks\useStore.ts                                                    | TypeScript         |         12 |          0 |          4 |         16 |
+| e:\tube-flix\lib\fetchMovie.ts                                                    | TypeScript         |         11 |          0 |          2 |         13 |
+| e:\tube-flix\lib\fetchMovies.ts                                                   | TypeScript         |         11 |          0 |          2 |         13 |
+| e:\tube-flix\lib\getResult.ts                                                     | TypeScript         |         10 |          0 |          1 |         11 |
+| e:\tube-flix\next.config.js                                                       | JavaScript         |          6 |          1 |          2 |          9 |
+| e:\tube-flix\package-lock.json                                                    | JSON               |      4,583 |          0 |          1 |      4,584 |
+| e:\tube-flix\package.json                                                         | JSON               |         33 |          0 |          1 |         34 |
+| e:\tube-flix\postcss.config.js                                                    | JavaScript         |          6 |          0 |          1 |          7 |
+| e:\tube-flix\public\Group.svg                                                     | XML                |         12 |          0 |          1 |         13 |
+| e:\tube-flix\public\next.svg                                                      | XML                |          1 |          0 |          0 |          1 |
+| e:\tube-flix\public\tubeflix.svg                                                  | XML                |          1 |          0 |          0 |          1 |
+| e:\tube-flix\public\vercel.svg                                                    | XML                |          1 |          0 |          0 |          1 |
+| e:\tube-flix\store\useNameStore.tsx                                               | TypeScript JSX     |         18 |          0 |          2 |         20 |
+| e:\tube-flix\tailwind.config.ts                                                   | TypeScript         |         33 |          1 |          2 |         36 |
+| e:\tube-flix\tsconfig.json                                                        | JSON with Comments |         29 |          4 |          1 |         34 |
+| e:\tube-flix\types\types.d.ts                                                     | TypeScript         |         78 |          0 |          8 |         86 |
+| Total                                                                             |                    |      6,005 |         27 |        185 |      6,217 |
++-----------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
