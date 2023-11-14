@@ -8,6 +8,7 @@ import { Movie } from '@/types/types';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Card from '@/components/Card/Card';
 
 type Props = {
 	searchParams: {
@@ -42,42 +43,7 @@ export default async function Movies({ searchParams }: Props) {
 				<div className='flex flex-wrap gap-4 items-center justify-center'>
 					{result?.map((movie: Movie) => (
 						<div key={movie.id}>
-							<div
-								className={`rounded-md w-72 md:h-full h-[28em] relative group overflow-hidden shadow-md shadow-primary/-700`}
-							>
-								<div>
-									{movie.poster_path || movie.backdrop_path ? (
-										<Image
-											src={
-												'https://image.tmdb.org/t/p/w500' +
-												(movie.poster_path || movie.backdrop_path)
-											}
-											alt={`${movie.title} poster card`}
-											width={500}
-											height={500}
-											className={`object-fit-contain rounded-md h-full w-full`}
-										/>
-									) : (
-										<ImageSkeleton />
-									)}
-								</div>
-								<div className='bg-slate-900/30 border-2 border-gray-400/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md rounded-r-md absolute -bottom-10 p-4 h-40 w-full md:group-hover:bottom-0 opacity-100 md:opacity-0 md:group-hover:opacity-100  transition-all ease-bezier duration-500 delay-300'>
-									<h2 className='text-accent-dark font-bold text-2xl'>
-										{movie.original_title || movie.title}
-									</h2>
-									<p className='text-sm mb-3'>
-										{<DateComponent date={movie.release_date} />}
-									</p>
-									<div>
-										<Link
-											href={`/movies/movie/${movie.id}`}
-											className='bg-accent-dark text-xl font-semibold px-4 py-2 absolute translate-x-1/2 -translate-y-1/2 top-0 right-14 rounded-sm  transition-opacity duration-300'
-										>
-											Watch Now
-										</Link>
-									</div>
-								</div>
-							</div>
+							<Card movie={movie} />
 						</div>
 					))}
 				</div>

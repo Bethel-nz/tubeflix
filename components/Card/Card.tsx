@@ -77,17 +77,21 @@ const Card = ({ movie }: Card) => {
 						/>
 					</button>
 					<div>
-						<Image
-							src={
-								'https://image.tmdb.org/t/p/w500' +
-								(poster_path || backdrop_path)
-							}
-							alt={`${title}'s poster card`}
-							width={500}
-							height={500}
-							className={`object-fit-contain rounded-md h-full w-full`}
-							priority
-						/>
+						{poster_path ? (
+							<Image
+								src={
+									'https://image.tmdb.org/t/p/w500' +
+									(poster_path || backdrop_path)
+								}
+								alt={`${title}'s poster card`}
+								width={500}
+								height={500}
+								className={`object-fit-contain rounded-md h-full w-full`}
+								priority
+							/>
+						) : (
+							<div className='w-full h-[26em] bg-gray-800' />
+						)}
 					</div>
 					<div className='bg-slate-900/30 border-2 border-gray-400/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md rounded-r-md absolute -bottom-10 p-4 h-40 w-full md:group-hover:bottom-0 opacity-100 md:opacity-0 md:group-hover:opacity-100  transition-all ease-bezier duration-500 delay-300'>
 						<h2 className='text-accent-dark font-bold text-2xl'>
