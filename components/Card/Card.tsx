@@ -93,7 +93,7 @@ const Card = ({ movie }: Card) => {
 							<div className='w-full h-[26em] bg-gray-800' />
 						)}
 					</div>
-					<div className='bg-slate-900/30 border-2 border-gray-400/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md rounded-r-md absolute -bottom-10 p-4 h-40 w-full md:group-hover:bottom-0 opacity-100 md:opacity-0 md:group-hover:opacity-100  transition-all ease-bezier duration-500 delay-300'>
+					<div className='bg-slate-900/30 border-2 border-gray-400/40 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md rounded-r-md absolute -bottom-10 p-4 h-52 md:h-40 w-full md:group-hover:bottom-0 opacity-100 md:opacity-0 md:group-hover:opacity-100  transition-all ease-bezier duration-500 delay-300'>
 						<h2 className='text-accent-dark font-bold text-2xl'>
 							{original_title || title}
 						</h2>
@@ -103,7 +103,7 @@ const Card = ({ movie }: Card) => {
 						<div className=''>
 							<Link
 								href={`/movies/movie/${movie.id}`}
-								className='bg-accent-dark text-xl font-semibold px-4 py-2 absolute translate-x-1/2  bottom-0 right-14  transition-opacity duration-300 rounded-tl-md'
+								className='bg-accent-dark text-xl font-semibold px-4 py-2 absolute translate-x-1/2 md:bottom-0 right-14 transition-opacity duration-300 rounded-tl-none md:rounded-tl-md'
 							>
 								Watch Now
 							</Link>
