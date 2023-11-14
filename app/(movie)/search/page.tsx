@@ -26,7 +26,7 @@ export default async function Movies({ searchParams }: Props) {
 	const moviesData = await getResult(q, page);
 	const { results: result } = moviesData;
 
-	const skeletonArray = Array.from({ length: 2 }, (_, index) => (
+	const skeletonArray = Array.from({ length: 20 }, (_, index) => (
 		<CardSkeleton key={index} />
 	));
 	return (

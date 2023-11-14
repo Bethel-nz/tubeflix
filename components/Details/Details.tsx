@@ -96,7 +96,9 @@ const Details = ({ movie }: details) => {
 					)}
 				</AnimatePresence>
 			</div>
-			<div className={`bg-black/90 rounded-tr-md p-6 shadow-xl flex flex-col`}>
+			<div
+				className={`bg-black/90 rounded-tr-md p-6 shadow-xl flex flex-col md:hidden`}
+			>
 				<div>
 					<h1 className='text-3xl font-bold mt-4 underline-offset-4 underline decoration-accent-dark'>
 						{movie.title || movie.original_title}
