@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { MovieData } from '@/types/types';
-import Card from './card';
+import { Movie } from '@/types/types';
+import Card from './Card';
 
 type ParentComponentProps = {
-  movies: MovieData[];
+  movies: Movie[];
 };
 
 const ParentComponent = ({ movies }: ParentComponentProps) => {

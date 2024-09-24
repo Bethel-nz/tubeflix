@@ -1,7 +1,7 @@
-import { MovieData } from '@/types/types';
+import { Movie } from '@/types/types';
 import { BASE_URL } from '@/constants';
 
-const fetchMovie = async (id: number): Promise<MovieData> => {
+const fetchMovie = async (id: number): Promise<Movie> => {
   try {
     const response = await fetch(`${BASE_URL}/api/movies/movie/${id}`);
     const data = await response.json();

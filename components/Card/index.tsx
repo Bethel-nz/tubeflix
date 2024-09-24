@@ -1,7 +1,7 @@
 'use client';
 import { useLocalStorage } from 'usehooks-ts';
 import { useEffect, useState, memo, useMemo, useCallback, lazy } from 'react';
-import { Movie, MovieData, Trailer } from '@/types/types';
+import { Movie, Trailer } from '@/types/types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getTrailer } from '@/lib/fetchTrailer';
 import { fetchSimilarMovies } from '@/lib/fetchSimilar';
@@ -21,7 +21,7 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
   const [cardState, setCardState] = useState({
     isFavourited: false,
     trailers: undefined as Trailer[] | undefined,
-    similarMovies: undefined as MovieData[] | undefined,
+    similarMovies: undefined as Movie[] | undefined,
   });
 
   const [storedFavorites, setStoredFavourites] = useLocalStorage<Movie[]>(

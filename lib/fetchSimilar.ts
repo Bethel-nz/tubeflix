@@ -1,10 +1,10 @@
 import { BASE_URL } from '@/constants';
 
-import { MovieData } from '@/types/types';
+import { Movie } from '@/types/types';
 
 export const fetchSimilarMovies = async (
   id: number,
-  callback: (movies: MovieData[] | undefined) => void
+  callback: (movies: Movie[] | undefined) => void
 ) => {
   try {
     const response = await fetch(`${BASE_URL}/api/movies/movie/${id}/similar`);

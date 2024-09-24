@@ -10,13 +10,16 @@ export type ButtonLinkProp = Props & {
 
 export type Movie = {
   backdrop_path: string;
+  genre_ids: number[];
   id: number;
   original_language: string;
   original_title: string;
+  overview: string;
+  popularity: number;
   poster_path: string;
   release_date: string;
   title: string;
-  overview: string;
+  video: boolean;
 };
 
 export type Trailer = {
@@ -45,55 +48,11 @@ export interface MoviesDataResponse {
   total_results: number;
 }
 
-export type MoviesData = {
+export type MovieData = {
   data: {
     page: number;
-    results: {
-      backdrop_path: string;
-      genre_ids: number[];
-      id: number;
-      original_language: string;
-      original_title: string;
-      overview: string;
-      popularity: number;
-      poster_path: string;
-      release_date: string;
-      title: string;
-      video: boolean;
-    }[];
+    results: Movie[];
     total_pages: number;
     total_results: number;
-  };
-};
-
-export type MovieData = {
-  backdrop_path: string;
-  belongs_to_collection?: {
-    id: number;
-    name: string;
-    poster_path: string | null;
-    backdrop_path: string | null;
-  };
-  genres: {
-    id: number;
-    name: string;
-  }[];
-  id: number;
-  imdb_id: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string | null;
-  release_date: string;
-  revenue: number;
-  runtime: number;
-  title: string;
-  video: boolean;
-  videos: {
-    results: {
-      name: string;
-      key: string;
-      id: string;
-    }[];
   };
 };

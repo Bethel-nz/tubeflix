@@ -1,7 +1,7 @@
 'use client';
 import { Movie } from '@/types/types';
 import { useLocalStorage } from 'usehooks-ts';
-import Card from '@/components/card';
+import Card from '@/components/Card';
 import Link from 'next/link';
 
 export default function Favourites() {

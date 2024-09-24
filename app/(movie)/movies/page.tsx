@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export async function generateStaticParams() {
   const moviesData = await fetchMovies();
-  const { data } = moviesData;
+  const data = moviesData.data;
   const { results: movies } = data;
 
   return movies.map((movie) => ({

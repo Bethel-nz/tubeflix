@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Movie } from '@/types/types';
-import Card from '@/components/card';
+import Card from '@/components/Card';
 
 type CardsProps = {
   movies: Movie[];

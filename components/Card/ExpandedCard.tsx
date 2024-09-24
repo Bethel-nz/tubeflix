@@ -3,19 +3,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark, X } from 'lucide-react';
 import DateComponent from '../shared/Date/FormattedDate';
-import { MovieData, Trailer } from '@/types/types';
+import { Movie, Trailer } from '@/types/types';
 import { useState, useEffect, memo } from 'react';
 import { TransitionPanel } from '@/components/transition-panel';
 import fetchMovie from '@/lib/fetchMovie'; // Assuming you have a function to fetch movie details
 import { useSearchParams } from 'next/navigation';
 
 type ExpandedCardProps = {
-  movie: Partial<MovieData>;
+  movie: Movie;
   trailers: Trailer[] | undefined;
   isFavourited: boolean;
   onCollapse: () => void;
   onAddToFavorites: () => void;
-  similarMovies: MovieData[];
+  similarMovies: Movie[];
 };
 
 const ExpandedCard = ({
@@ -28,12 +28,12 @@ const ExpandedCard = ({
 }: ExpandedCardProps) => {
   const params = useSearchParams();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [currentMovie, setCurrentMovie] = useState<Partial<MovieData>>(movie);
+  const [currentMovie, setCurrentMovie] = useState<Movie>(movie);
 
   useEffect(() => {
     const id = params.get('id');
     if (id) {
-      fetchMovie(parseInt(id)).then((movie: MovieData) => {
+      fetchMovie(parseInt(id)).then((movie: Movie) => {
         setCurrentMovie(movie);
       });
     }
@@ -246,7 +246,7 @@ function _Trailers({ trailers }: { trailers: Trailer[] | undefined }) {
   );
 }
 
-function _MovieInfo({ movie }: { movie: Partial<MovieData> }) {
+function _MovieInfo({ movie }: { movie: Movie }) {
   return (
     <div>
       <p className='text-sm text-white mb-4 z-10'>{movie.overview}</p>
@@ -254,7 +254,7 @@ function _MovieInfo({ movie }: { movie: Partial<MovieData> }) {
   );
 }
 
-function _SimilarMovies({ similarMovies }: { similarMovies: MovieData[] }) {
+function _SimilarMovies({ similarMovies }: { similarMovies: Movie[] }) {
   const handleMovieClick = (id: number) => {
     const url = new URL(window.location.href);
     url.searchParams.set('modal', 'open');
