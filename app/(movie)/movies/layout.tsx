@@ -1,5 +1,4 @@
 import { Props } from '@/types/types';
-import { Analytics } from '@vercel/analytics/react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +11,6 @@ const Movielayout = ({ children }: Props) => {
 		<section className='py-4 px-2 h-[100dvh] overflow-y-scroll'>
 			<div>
 				{children}
-				<Analytics />
 			</div>
 		</section>
 	);
