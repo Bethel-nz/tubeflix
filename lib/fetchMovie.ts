@@ -1,9 +1,8 @@
 import { Movie } from '@/types/types';
-import { BASE_URL } from '@/constants';
 
 const fetchMovie = async (id: number): Promise<Movie> => {
   try {
-    const response = await fetch(`${BASE_URL}/api/movies/movie/${id}`);
+    const response = await fetch(`https://${process.env.VERCEL_URL}/api/movies/movie/${id}`);
     const data = await response.json();
     return data;
   } catch (error) {
