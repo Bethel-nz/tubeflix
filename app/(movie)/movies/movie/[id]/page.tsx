@@ -1,6 +1,6 @@
 import VideoFrame from '@/components/VideoFrame/VideoFrame';
 import fetchMovie from '@/lib/fetchMovie';
-import { MovieData } from '@/types/types';
+import { Movie } from '@/types/types';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
@@ -13,7 +13,7 @@ type Params = {
 export async function generateMetadata({
   params: { id },
 }: Params): Promise<Metadata> {
-  const movieData: MovieData = await fetchMovie(id);
+  const movieData: Movie = await fetchMovie(id);
 
   return {
     title: movieData.title,
@@ -22,7 +22,7 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params: { id } }: Params) {
-  const movie: MovieData = await fetchMovie(id);
+  const movie: Movie = await fetchMovie(id);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
