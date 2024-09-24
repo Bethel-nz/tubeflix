@@ -1,17 +1,8 @@
 'use client';
 import { useLocalStorage } from 'usehooks-ts';
-import {
-  Suspense,
-  useEffect,
-  useState,
-  memo,
-  useMemo,
-  useCallback,
-  lazy,
-} from 'react';
+import { useEffect, useState, memo, useMemo, useCallback, lazy } from 'react';
 import { Movie, MovieData, Trailer } from '@/types/types';
 import { motion, AnimatePresence } from 'framer-motion';
-import CardSkeleton from '../shared/Skeleton/CardSkeleton/CardSkeleton';
 import { getTrailer } from '@/lib/fetchTrailer';
 import { fetchSimilarMovies } from '@/lib/fetchSimilar';
 import { useSearchParams } from 'next/navigation';
@@ -98,32 +89,30 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
   );
 
   return (
-    <Suspense fallback={<CardSkeleton />}>
-      <motion.div
-        layout
-        className='relative'
-        initial={{ opacity: 0.95 }}
-        animate={{ opacity: 1, transition: { duration: 0.3 } }}
-      >
-        <NormalCard
-          movie={movie as Movie}
-          onExpand={() => handleExpand(movie.id!)}
-        />
+    <motion.div
+      layout
+      className='relative'
+      initial={{ opacity: 0.95 }}
+      animate={{ opacity: 1, transition: { duration: 0.3 } }}
+    >
+      <NormalCard
+        movie={movie as Movie}
+        onExpand={() => handleExpand(movie.id!)}
+      />
 
-        <AnimatePresence mode='popLayout'>
-          {isExpanded && (
-            <ExpandedCard
-              movie={movie as Movie}
-              trailers={cardState.trailers}
-              isFavourited={cardState.isFavourited}
-              onCollapse={onCollapse}
-              onAddToFavorites={() => addToFavorites(movie as MovieData)}
-              similarMovies={cardState.similarMovies || []} // Ensure similarMovies is always an array
-            />
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </Suspense>
+      <AnimatePresence mode='popLayout'>
+        {isExpanded && (
+          <ExpandedCard
+            movie={movie as Movie}
+            trailers={cardState.trailers}
+            isFavourited={cardState.isFavourited}
+            onCollapse={onCollapse}
+            onAddToFavorites={() => addToFavorites(movie as MovieData)}
+            similarMovies={cardState.similarMovies || []} // Ensure similarMovies is always an array
+          />
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
