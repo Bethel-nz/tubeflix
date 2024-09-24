@@ -3,19 +3,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Bookmark, X } from 'lucide-react';
 import DateComponent from '../shared/Date/FormattedDate';
-import { Movie, Trailer } from '@/types/types';
-import { useState } from 'react';
+import { MovieData, Trailer } from '@/types/types';
+import { useState, useEffect, memo } from 'react';
 import { TransitionPanel } from '@/components/transition-panel';
-
-// import MovieCard from './MovieCard'; // Import the MovieCard component
+import fetchMovie from '@/lib/fetchMovie'; // Assuming you have a function to fetch movie details
+import { useSearchParams } from 'next/navigation';
 
 type ExpandedCardProps = {
-  movie: Movie;
+  movie: Partial<MovieData>;
   trailers: Trailer[] | undefined;
   isFavourited: boolean;
   onCollapse: () => void;
   onAddToFavorites: () => void;
-  // similarMovies: Movie[];
+  similarMovies: MovieData[];
 };
 
 const ExpandedCard = ({
@@ -24,17 +24,29 @@ const ExpandedCard = ({
   isFavourited,
   onCollapse,
   onAddToFavorites,
+  similarMovies,
 }: ExpandedCardProps) => {
+  const params = useSearchParams();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentMovie, setCurrentMovie] = useState<Partial<MovieData>>(movie);
+
+  useEffect(() => {
+    const id = params.get('id');
+    if (id) {
+      fetchMovie(parseInt(id)).then((movie: MovieData) => {
+        setCurrentMovie(movie);
+      });
+    }
+  }, [params]);
 
   const PANELS = [
     {
       title: 'Info',
-      content: <_MovieInfo movie={movie} />,
+      content: <_MovieInfo movie={currentMovie} />,
     },
     {
       title: 'Similar',
-      content: <_SimilarMovies />,
+      content: <_SimilarMovies similarMovies={similarMovies} />,
     },
     {
       title: 'Trailers',
@@ -48,12 +60,11 @@ const ExpandedCard = ({
     original_title = '',
     title = '',
     release_date = '',
-    // overview = '',
-  } = movie;
+  } = currentMovie;
 
   return (
     <motion.div
-      layoutId={`movie-card-${movie.id}`}
+      layoutId={`movie-card-${currentMovie.id}`}
       drag='y'
       dragConstraints={{ top: 0, bottom: 0 }}
       dragElastic={{ top: 0.02, bottom: 0.3 }}
@@ -71,7 +82,7 @@ const ExpandedCard = ({
     >
       <div className='min-h-screen flex items-center justify-center py-8'>
         <motion.div
-          className='bg-black/80 backdrop-filter backdrop-blur-3xl rounded-lg p-6 w-[90vw] max-w-[800px] max-h-[95vh] md:max-h-[80vh] relative shadow-lg space-x-3 flex md:flex-row flex-col'
+          className='bg-black/80 backdrop-filter backdrop-blur-3xl rounded-lg p-5 w-[90vw] max-w-[800px] gap-x-4 max-h-[95vh] md:max-h-[80vh] relative shadow-lg space-x-3 flex justify-between md:flex-row flex-col'
           onClick={(e) => e.stopPropagation()}
           layoutId={`movie-card-${id}`}
         >
@@ -82,7 +93,7 @@ const ExpandedCard = ({
           >
             <button
               onClick={onCollapse}
-              className='bg-neutral-300/30 backdrop-filter backdrop-blur-md rounded-full p-2 sticky top-2'
+              className='bg-neutral-200/30 backdrop-filter backdrop-blur-3xl rounded-full p-1 sticky top-2'
             >
               <X className='text-white' size={20} />
             </button>
@@ -109,10 +120,44 @@ const ExpandedCard = ({
             <p className='text-sm mb-2 text-accent-one'>
               <DateComponent date={release_date} />
             </p>
-            <div className='flex gap-x-4 mb-4'>
+
+            <div className='mb-4 flex space-x-2'>
+              {PANELS.map((panel, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`rounded-md px-3 py-1 text-sm font-medium ${
+                    activeIndex === index
+                      ? 'bg-amber-500 text-white'
+                      : ' dark:bg-zinc-700 dark:text-zinc-400'
+                  }`}
+                >
+                  {panel.title}
+                </button>
+              ))}
+            </div>
+            <div className='overflow-scroll border-t border-zinc-200 dark:border-zinc-700 flex-grow'>
+              <TransitionPanel
+                activeIndex={activeIndex}
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                variants={{
+                  enter: { opacity: 0, y: -50, filter: 'blur(4px)' },
+                  center: { opacity: 1, y: 0, filter: 'blur(0px)' },
+                  exit: { opacity: 0, y: 50, filter: 'blur(4px)' },
+                }}
+              >
+                {PANELS.map((panel, index) => (
+                  <div key={index} className='py-2'>
+                    {panel.content}
+                  </div>
+                ))}
+              </TransitionPanel>
+            </div>
+
+            <div className='flex gap-x-4 mb-4 mt-auto'>
               <Link href={`/movies/${id}`}>
                 <motion.button
-                  className='bg-accent-dark text-white  text-sm font-semibold px-4 py-2 rounded-md inline-flex items-center gap-1.5'
+                  className='bg-amber-500 text-white  text-sm font-semibold px-4 py-2 rounded-md inline-flex items-center gap-1.5'
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -135,12 +180,11 @@ const ExpandedCard = ({
               </Link>
               <button
                 onClick={onAddToFavorites}
-                className='flex items-center gap-2 border-3 rounded-md'
+                className='flex items-center gap-1 border-3 rounded-md'
               >
                 <span>
                   <Bookmark
-                    className={`
-                    ${
+                    className={`${
                       isFavourited ? 'fill-accent-dark' : 'fill-none'
                     } border-none`}
                   />
@@ -148,53 +192,6 @@ const ExpandedCard = ({
                 <p>Bookmark</p>
               </button>
             </div>
-
-            
-
-            {/* Add the transition panel here */}
-            <div className='mb-4 flex space-x-2'>
-              {PANELS.map((panel, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`rounded-md px-3 py-1 text-sm font-medium ${
-                    activeIndex === index
-                      ? 'bg-amber-500 text-white'
-                      : ' dark:bg-zinc-700 dark:text-zinc-400'
-                  }`}
-                >
-                  {panel.title}
-                </button>
-              ))}
-            </div>
-            <div className='overflow-hidden border-t border-zinc-200 dark:border-zinc-700'>
-              <TransitionPanel
-                activeIndex={activeIndex}
-                transition={{ duration: 0.2, ease: 'easeInOut' }}
-                variants={{
-                  enter: { opacity: 0, y: -50, filter: 'blur(4px)' },
-                  center: { opacity: 1, y: 0, filter: 'blur(0px)' },
-                  exit: { opacity: 0, y: 50, filter: 'blur(4px)' },
-                }}
-              >
-                {PANELS.map((panel, index) => (
-                  <div key={index} className='py-2'>
-                    {panel.content}
-                  </div>
-                ))}
-              </TransitionPanel>
-            </div>
-
-            
-
-            {/* <div className='mt-8'>
-              <h3 className='text-xl font-semibold mb-4'>Similar Movies</h3>
-              <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                {similarMovies.slice(0, 4).map((similarMovie) => (
-                  <MovieCard key={similarMovie.id} movie={similarMovie} />
-                ))}
-              </div>
-            </div> */}
           </div>
         </motion.div>
       </div>
@@ -202,18 +199,32 @@ const ExpandedCard = ({
   );
 };
 
-export default ExpandedCard;
+export default memo(ExpandedCard);
 
 function _Trailers({ trailers }: { trailers: Trailer[] | undefined }) {
+  const [loaded, setLoaded] = useState<boolean[]>([]);
+
+  const handleLoad = (index: number) => {
+    setLoaded((prev) => {
+      const newLoaded = [...prev];
+      newLoaded[index] = true;
+      return newLoaded;
+    });
+  };
+
   return (
     <div>
-      <h3 className='text-xl text-balance mb-4'>Trailers</h3>
-      <div className='flex flex-wrap mt-3 gap-2 overflow-y-auto'>
-        {trailers?.map((trailer) => (
+      <div className='flex flex-wrap mt-3 gap-2 max-h-64 overflow-y-auto'>
+        {trailers?.map((trailer, index) => (
           <div
             key={trailer.id}
-            className='md:h-32 h-60 w-full md:w-48 rounded-md'
+            className='md:h-32 h-60 w-full md:w-48 rounded-md relative'
           >
+            {!loaded[index] && (
+              <div className='absolute inset-0 flex items-center justify-center bg-gray-800 rounded-md'>
+                <div className='bg-gray-700 h-40 rounded-md animate-pulse' />
+              </div>
+            )}
             <a
               href={`https://www.youtube.com/watch?v=${trailer.key}`}
               target='_blank'
@@ -223,6 +234,7 @@ function _Trailers({ trailers }: { trailers: Trailer[] | undefined }) {
                 src={`https://www.youtube.com/embed/${trailer.key}`}
                 loading='lazy'
                 className='w-full h-full rounded-md'
+                onLoad={() => handleLoad(index)}
               >
                 {trailer.name}
               </iframe>
@@ -234,7 +246,7 @@ function _Trailers({ trailers }: { trailers: Trailer[] | undefined }) {
   );
 }
 
-function _MovieInfo({ movie }: { movie: Movie }) {
+function _MovieInfo({ movie }: { movie: Partial<MovieData> }) {
   return (
     <div>
       <p className='text-sm text-white mb-4 z-10'>{movie.overview}</p>
@@ -242,18 +254,57 @@ function _MovieInfo({ movie }: { movie: Movie }) {
   );
 }
 
-function _SimilarMovies() {
+function _SimilarMovies({ similarMovies }: { similarMovies: MovieData[] }) {
+  const handleMovieClick = (id: number) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('modal', 'open');
+    url.searchParams.set('id', id.toString());
+    window.history.pushState({}, '', url.toString());
+    window.dispatchEvent(new PopStateEvent('popstate')); // Trigger a popstate event to handle the URL change
+  };
+
   return (
     <div>
-      <h3 className='text-xl font-semibold mb-4'>Similar Movies</h3>
-      {/* Add a skeleton or placeholder for similar movies */}
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-        {[1, 2, 3, 4].map((i) => (
-          <div
-            key={i}
-            className='bg-gray-700 h-40 rounded-md animate-pulse'
-          ></div>
-        ))}
+      <div className='grid grid-cols-2 md:grid-cols-3 mt-4 gap-4 overflow-y-auto max-h-72'>
+        {similarMovies.length > 0
+          ? similarMovies.map((movie) => (
+              <motion.div
+                key={movie.id}
+                className='rounded-md relative group overflow-hidden shadow-md shadow-primary/-700 w-[10rem] md:w-[8rem]  cursor-pointer'
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleMovieClick(movie.id)}
+              >
+                <div className='h-40'>
+                  {movie.poster_path ? (
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt={`${movie.title}'s poster card`}
+                      width={500}
+                      height={500}
+                      className='rounded-es-none rounded-ee-none rounded-ss-md rounded-se-md object-cover h-full'
+                      priority
+                    />
+                  ) : (
+                    <div className='w-full h-full bg-gray-800' />
+                  )}
+                </div>
+                <div className='p-2 w-full rounded-ss-none rounded-se-none rounded-ee-md rounded-es-md h-fit mt-1 bg-black/80 backdrop-filter backdrop-blur-sm'>
+                  <h2 className='text-accent-dark font-bold text-sm sm:text-base truncate'>
+                    {movie.original_title || movie.title}
+                  </h2>
+                  <p className='text-xs mb-1'>
+                    <DateComponent date={movie.release_date} />
+                  </p>
+                </div>
+              </motion.div>
+            ))
+          : [1, 2, 3, 4, 6, 7, 8].map((i) => (
+              <div
+                key={i}
+                className='bg-gray-700 h-40 rounded-md animate-pulse'
+              ></div>
+            ))}
       </div>
     </div>
   );

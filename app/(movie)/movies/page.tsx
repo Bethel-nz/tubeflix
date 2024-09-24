@@ -1,16 +1,15 @@
 import { Pagination } from '@/components/shared/Pagination/Pagination';
 import fetchMovies from '@/lib/fetchMovies';
-import { Movie } from '@/types/types';
 import { Metadata } from 'next';
 import { lazy } from 'react';
-const Card = lazy(() => import('@/components/Card/Card'));
+const Cards = lazy(() => import('@/components/cards'));
 
 type Props = {
-  params?: string;
-  searchParams: {
-    page: number;
-  };
+  params: { page: string };
+  searchParams: { page: string };
 };
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Tube-Flix - Movies',
@@ -29,23 +28,17 @@ export async function generateStaticParams() {
 
 export default async function Movies({ searchParams }: Props) {
   const { page } = searchParams;
-  const moviesData = await fetchMovies(page);
+  const moviesData = await fetchMovies(Number(page));
   const { data } = moviesData;
   const { results: movies } = data;
 
   return (
     <div>
-      <div className='grid grid-cols-3 xl:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 w-full gap-y-8 gap-x-3 h-full place-items-center'>
-        {movies?.map((movie: Movie) => (
-          <Card movie={movie} key={movie.id} />
-        ))}
+      <div>
+        <Cards movies={movies} />
       </div>
       <div>
-        <Pagination
-          page={Number(page) || 1}
-          totalPages={500}
-          maxPageLinks={8}
-        />
+        <Pagination page={Number(page)} totalPages={500} />
       </div>
     </div>
   );

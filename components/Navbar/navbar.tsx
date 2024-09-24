@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import useMeasure from 'react-use-measure';
 
 import SearchBar from '../searchBar/SearchBar';
-// import { IconType } from 'react-icons';
 
 type NavItemProps = {
   href: string;
@@ -55,20 +54,20 @@ export const Navbar: React.FC = () => {
   return (
     <nav
       className={`bg-black text-white py-2 px-4 w-full z-50 transition-all duration-300 ${
-        isScrolled || isOpen ? 'h-auto sticky top-0 left-0' : 'h-fit'
+        isScrolled || isOpen ? 'h-auto sticky top-0 left-0' : ''
       }`}
     >
       <div className='max-w-full mx-auto flex items-center md:px-8 px-2'>
         <div className='flex items-center space-x-4 justify-between w-full'>
           <div className='flex items-center'>
-            <Link href='/movies' className='flex items-center'>
+            <Link href='/movies?page=1' className='flex items-center'>
               <span className='text-[#F5C518] font-bold text-2xl mr-2 '>
                 Tube-Flix
               </span>
             </Link>
             <div className='hidden md:flex'>
               <NavItem href='/movies' text='Movies' />
-              <NavItem href='/tv-shows' text='TV Shows' />
+              {/* <NavItem href='/tv-shows' text='TV Shows' />*/}
               <NavItem href='/watch' text='Watch' />
             </div>
           </div>
@@ -109,8 +108,8 @@ export const Navbar: React.FC = () => {
           className='flex flex-col items-center justify-center space-y-2 px-8 py-4'
         >
           <NavItem href='/movies' text='Movies' />
-          <NavItem href='/tv-shows' text='TV Shows' />
-          <NavItem href='/watch' text='Watch' />
+          {/* <NavItem href='/tv-shows' text='TV Shows' /> */}
+          {/* <NavItem href='/watch' text='Watch' /> */}
           <NavItem href='/watchlist' text='Watchlist' />
         </div>
       </motion.div>

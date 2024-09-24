@@ -35,6 +35,7 @@ const NormalCard = ({ movie, onExpand }: NormalCardProps) => {
             height={500}
             className='rounded-es-none rounded-ee-none rounded-ss-md rounded-se-md object-cover h-full'
             priority
+            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=='
           />
         ) : (
           <div className='w-full h-full bg-gray-800' />

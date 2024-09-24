@@ -6,13 +6,11 @@ import React, { useState } from 'react';
 export interface Props {
   page: number;
   totalPages: number;
-  maxPageLinks: number;
 }
 
 export const PaginationComponent: React.FC<Props> = ({
   page = 1,
   totalPages,
-  maxPageLinks,
 }) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(page);
@@ -34,82 +32,78 @@ export const PaginationComponent: React.FC<Props> = ({
     router.push(newUrl);
   };
 
-  const startPage = Math.max(1, currentPage - 2);
-  const endPage = Math.min(totalPages, currentPage + 2);
+  const renderPageButton = (pageNumber: number) => (
+    <button
+      key={pageNumber}
+      onClick={() => handlePagination(pageNumber)}
+      type='button'
+      className={`p-1 mx-1 text-white rounded-md hover:bg-accent-dark ${
+        currentPage === pageNumber ? 'bg-accent-dark' : ''
+      }`}
+      style={{ minWidth: '32px' }}
+    >
+      {pageNumber}
+    </button>
+  );
+
+  const renderEllipsis = (key: string) => (
+    <div key={key} className='mx-1 text-white'>
+      •••
+    </div>
+  );
+
+  const pageButtons = [];
+  const showLeftEllipsis = currentPage > 4;
+  const showRightEllipsis = currentPage < totalPages - 3;
+
+  if (showLeftEllipsis) {
+    pageButtons.push(renderPageButton(1));
+    pageButtons.push(renderEllipsis('left'));
+  }
+
+  let start = Math.max(1, currentPage - 2);
+  const end = Math.min(totalPages, start + 5);
+
+  if (end - start < 5 && start > 1) {
+    start = Math.max(1, end - 5);
+  }
+
+  for (let i = start; i <= end; i++) {
+    pageButtons.push(renderPageButton(i));
+  }
+
+  if (showRightEllipsis) {
+    pageButtons.push(renderEllipsis('right'));
+    pageButtons.push(renderPageButton(totalPages));
+  }
 
   return (
-    <div className='pagination-container flex justify-center items-center mt-4'>
-      {totalPages !== 1 ? (
-        <>
-          <button
-            onClick={() => handlePagination(currentPage - 1)}
-            type='button'
-            className='p-1 bg-neutral-800 text-white hover:bg-accent-dark rounded-full disabled:bg-neutral-600'
-            disabled={currentPage === 1}
-          >
-            <ChevronLeft />
-          </button>
+    <div className='pagination-container flex justify-center items-center mt-16 '>
+      <div className='bg-neutral-900 w-fit flex items-center justify-center tracking-wider space-x-1 md:space-x-2 py-2 md:py-4 px-2 md:px-3 rounded-lg'>
+        {totalPages !== 1 ? (
+          <>
+            <button
+              onClick={() => handlePagination(currentPage - 1)}
+              type='button'
+              className='p-2 bg-neutral-800 text-white hover:bg-accent-dark rounded-full disabled:bg-neutral-600'
+              disabled={currentPage === 1}
+            >
+              <ChevronLeft />
+            </button>
 
-          {startPage !== 1 && (
-            <>
-              <button
-                onClick={() => handlePagination(1)}
-                type='button'
-                className={`p-1 mx-1 text-white rounded-md hover:bg-accent-dark ${
-                  currentPage === 1 ? 'bg-accent-dark font-bold' : ''
-                }`}
-              >
-                1
-              </button>
-              {startPage > 2 && <div className='mx-1 text-white'>•••</div>}
-            </>
-          )}
+            {pageButtons}
 
-          {Array.from({ length: endPage - startPage + 1 }, (_, index) => {
-            const pageNumber = startPage + index;
-            return (
-              <button
-                key={pageNumber}
-                onClick={() => handlePagination(pageNumber)}
-                type='button'
-                className={`p-1 mx-1 text-white rounded-md hover:bg-accent-dark ${
-                  currentPage === pageNumber ? 'bg-accent-dark' : ''
-                }`}
-                style={{ minWidth: '32px' }} // Ensures consistent width
-              >
-                {pageNumber}
-              </button>
-            );
-          })}
-
-          {endPage !== totalPages && (
-            <>
-              {endPage < totalPages - 1 && (
-                <div className='mx-1 text-white'>•••</div>
-              )}
-              <button
-                onClick={() => handlePagination(totalPages)}
-                type='button'
-                className={`p-1 mx-1 text-white rounded-md hover:bg-accent-dark ${
-                  currentPage === totalPages ? 'bg-accent-dark' : ''
-                }`}
-                style={{ minWidth: '32px' }} // Ensures consistent width
-              >
-                {totalPages}
-              </button>
-            </>
-          )}
-
-          <button
-            onClick={() => handlePagination(currentPage + 1)}
-            type='button'
-            className='p-1 bg-neutral-800 text-white hover:bg-accent-dark rounded-full disabled:bg-neutral-600'
-            disabled={currentPage === totalPages}
-          >
-            <ChevronRight />
-          </button>
-        </>
-      ) : null}
+            <button
+              onClick={() => handlePagination(currentPage + 1)}
+              type='button'
+              className='p-2 bg-neutral-800 text-white hover:bg-accent-dark rounded-full disabled:bg-neutral-600'
+              disabled={currentPage === totalPages}
+            >
+              <ChevronRight />
+            </button>
+          </>
+        ) : null}
+      </div>
     </div>
   );
 };

@@ -18,9 +18,9 @@ export async function GET(request: Request, { params: { id } }: Params) {
     };
     const response = await fetch(url, options);
     const data = await response.json();
-
     return NextResponse.json(data);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: 'Failed to fetch movie details' },
       { status: 500 }

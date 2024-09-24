@@ -18,8 +18,9 @@ export async function GET(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json({ data });
   } catch (error) {
+    console.error('Error fetching movies:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch popular movies' },
+      { error: 'Internal Server Error' },
       { status: 500 }
     );
   }

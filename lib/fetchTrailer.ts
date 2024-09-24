@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/constants';
 import { Trailer } from '@/types/types';
 
 export const getTrailer = async (
@@ -5,7 +6,7 @@ export const getTrailer = async (
   callback: (trailers: Trailer[] | undefined) => void
 ): Promise<void> => {
   try {
-    const response = await fetch(`/api/movies/movie/${id}/trailer`);
+    const response = await fetch(`${BASE_URL}/api/movies/movie/${id}/trailer`);
     if (!response.ok) {
       throw new Error('Failed to fetch trailer');
     }
