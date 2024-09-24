@@ -95,4 +95,6 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
   );
 };
 
-export default memo(Card);
+const MemoizedCard = memo(Card);
+MemoizedCard.displayName = 'Card';
+export default Card;

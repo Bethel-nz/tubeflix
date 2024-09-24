@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { Movie } from '@/types/types';
 import Card from '@/components/card';
 
-type ParentComponentProps = {
+type CardsProps = {
   movies: Movie[];
 };
 
-const ParentComponent = ({ movies }: ParentComponentProps) => {
+const Cards = ({ movies }: CardsProps) => {
   const [expandedMovieId, setExpandedMovieId] = useState<number | null>(null);
 
   const handleExpand = (id: number) => {
@@ -33,4 +33,4 @@ const ParentComponent = ({ movies }: ParentComponentProps) => {
   );
 };
 
-export default ParentComponent;
+export default Cards;
