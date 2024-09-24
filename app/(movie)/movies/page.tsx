@@ -1,7 +1,7 @@
 import { Pagination } from '@/components/shared/Pagination/Pagination';
 import fetchMovies from '@/lib/fetchMovies';
 import { Metadata } from 'next';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 const Cards = lazy(() => import('@/components/cards'));
 
 type Props = {
@@ -34,9 +34,9 @@ export default async function Movies({ searchParams }: Props) {
 
   return (
     <div>
-      <div>
+      <Suspense fallback={<div>Loading...</div>}>
         <Cards movies={movies} />
-      </div>
+      </Suspense>
       <div>
         <Pagination page={Number(page)} totalPages={500} />
       </div>
