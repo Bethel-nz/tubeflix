@@ -155,7 +155,7 @@ const ExpandedCard = ({
             </div>
 
             <div className='flex gap-x-4 mb-4 mt-auto'>
-              <Link href={`/movies/${id}`}>
+              <Link href={`/movies/movie/${id}`}>
                 <motion.button
                   className='bg-amber-500 text-white  text-sm font-semibold px-4 py-2 rounded-md inline-flex items-center gap-1.5'
                   whileHover={{ scale: 1.05 }}
