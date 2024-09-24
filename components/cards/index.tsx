@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
-import { MovieData } from '@/types/types';
+import { Movie } from '@/types/types';
 import Card from '@/components/card';
 
 type ParentComponentProps = {
-  movies: Partial<MovieData>[];
+  movies: Movie[];
 };
 
 const ParentComponent = ({ movies }: ParentComponentProps) => {
@@ -20,10 +20,10 @@ const ParentComponent = ({ movies }: ParentComponentProps) => {
 
   return (
     <div className='grid grid-cols-3 xl:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 w-full gap-y-8 gap-x-3 h-full place-items-center'>
-      {movies?.map((movie) => (
+      {movies?.map((movie: Movie) => (
         <Card
           key={movie.id}
-          movie={movie as MovieData}
+          movie={movie}
           isExpanded={expandedMovieId === movie.id}
           onExpand={handleExpand}
           onCollapse={handleCollapse}

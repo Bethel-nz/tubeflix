@@ -10,7 +10,7 @@ const NormalCard = lazy(() => import('./NormalCard'));
 const ExpandedCard = lazy(() => import('./ExpandedCard'));
 
 type CardProps = {
-  movie: Partial<MovieData>;
+  movie: Movie;
   isExpanded: boolean;
   onExpand: (id: number) => void;
   onCollapse: () => void;
@@ -24,7 +24,7 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
     similarMovies: undefined as MovieData[] | undefined,
   });
 
-  const [storedFavorites, setStoredFavourites] = useLocalStorage<MovieData[]>(
+  const [storedFavorites, setStoredFavourites] = useLocalStorage<Movie[]>(
     'favouriteMovies',
     []
   );
@@ -69,7 +69,7 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
   }, [onExpand, onCollapse, params]);
 
   const addToFavorites = useCallback(
-    (movie: MovieData) => {
+    (movie: Movie) => {
       setStoredFavourites((prev) =>
         isOnArray ? prev.filter((fav) => fav.id !== movie.id) : [...prev, movie]
       );
@@ -95,10 +95,7 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
       initial={{ opacity: 0.95 }}
       animate={{ opacity: 1, transition: { duration: 0.3 } }}
     >
-      <NormalCard
-        movie={movie as Movie}
-        onExpand={() => handleExpand(movie.id!)}
-      />
+      <NormalCard movie={movie} onExpand={() => handleExpand(movie.id!)} />
 
       <AnimatePresence mode='popLayout'>
         {isExpanded && (
@@ -107,7 +104,7 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
             trailers={cardState.trailers}
             isFavourited={cardState.isFavourited}
             onCollapse={onCollapse}
-            onAddToFavorites={() => addToFavorites(movie as MovieData)}
+            onAddToFavorites={() => addToFavorites(movie)}
             similarMovies={cardState.similarMovies || []} // Ensure similarMovies is always an array
           />
         )}
