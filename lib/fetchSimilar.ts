@@ -7,7 +7,7 @@ export const fetchSimilarMovies = async (
   callback: (movies: Movie[] | undefined) => void
 ) => {
   try {
-    const response = await fetch(`https://${process.env.VERCEL_URL}/api/movies/movie/${id}/similar`);
+    const response = await fetch(`${BASE_URL}/api/movies/movie/${id}/similar`);
     const data = await response.json();
     callback(data.similarMovies); // Ensure the callback receives the correct data
   } catch (error) {
