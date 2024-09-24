@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { MovieData } from '@/types/types';
-import Card from '../card';
+import Card from '@/components/card';
 
 type ParentComponentProps = {
   movies: Partial<MovieData>[];
