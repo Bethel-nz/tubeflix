@@ -1,21 +1,43 @@
 'use client';
-
 import { Movie } from '@/types/types';
 import { useLocalStorage } from 'usehooks-ts';
-import Cards from '@/components/cards';
-import { Suspense } from 'react';
+import Card from '@/components/card/Card';
+import Link from 'next/link';
 
-export default function Watchlist() {
+export default function Favourites() {
   const [movies] = useLocalStorage<Movie[]>('favouriteMovies', []);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className='container mx-auto px-4 py-8'>
-        <h1 className='text-3xl md:text-4xl font-bold text-center mb-8 text-gray-200'>
-          Your Watchlist
-        </h1>
-        <Cards movies={movies} />
-      </div>
-    </Suspense>
+    <div className='mt-4 ml-4'>
+      {movies.length >= 1 ? (
+        <div className='flex flex-wrap gap-4 items-center justify-center w-full mx-auto'>
+          {movies.map((movie: Movie) => (
+            <div key={movie.id}>
+              <Card
+                movie={movie}
+                isExpanded={false}
+                onExpand={() => {}}
+                onCollapse={() => {}}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className='flex flex-col items-center justify-center mx-auto space-y-4 gap-y-8 text-gray-200 font-semibold text-center h-[98dvh] w-[90dvw]'>
+          <h2 className='text-7xl'>Oops! 😢</h2>
+          <h3 className='text-4xl'>
+            You {`haven't`} selected your favourite movies
+          </h3>
+          <div className='mt-4'>
+            <Link
+              href={'/movies?page=1'}
+              className='px-12 py-2 text-3xl font-bold duration-200 border-4 rounded-full text-accent-dark hover:text-accent-one border-accent-dark hover:border-accent-one transition-color ease-bezier'
+            >
+              Start Here
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
