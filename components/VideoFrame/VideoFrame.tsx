@@ -6,7 +6,7 @@ type VideoFrameProps = {
 };
 
 const VideoFrame: React.FC<VideoFrameProps> = ({ imdb_Id, tmdb_Id }) => {
-  let src = 'https://multiembed.mov/?';
+  let src = process.env.BASE_MOVIE_URL!;
 
   if (tmdb_Id) {
     src += `video_id=${tmdb_Id}&tmdb=1`;
@@ -15,11 +15,11 @@ const VideoFrame: React.FC<VideoFrameProps> = ({ imdb_Id, tmdb_Id }) => {
   }
 
   return (
-    <div className='relative w-full pt-[56.25%] overflow-hidden rounded-lg shadow-lg'>
+    <div className='w-full h-[90dvh]'>
       <iframe
         src={src}
         allowFullScreen
-        className='absolute inset-0 w-full h-full'
+        className='w-full h-full object-cover'
         title='Movie Trailer'
       />
     </div>

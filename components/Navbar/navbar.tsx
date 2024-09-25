@@ -66,9 +66,9 @@ export const Navbar: React.FC = () => {
               </span>
             </Link>
             <div className='hidden md:flex'>
-              <NavItem href='/movies' text='Movies' />
+              <NavItem href='/movies?page=1' text='Movies' />
               {/* <NavItem href='/tv-shows' text='TV Shows' />*/}
-              <NavItem href='/watch' text='Watch' />
+              {/* <NavItem href='/watch' text='Watch' /> */}
             </div>
           </div>
           <div className='flex items-center justify-end gap-8'>
@@ -107,7 +107,7 @@ export const Navbar: React.FC = () => {
           ref={ref}
           className='flex flex-col items-center justify-center space-y-2 px-8 py-4'
         >
-          <NavItem href='/movies' text='Movies' />
+          <NavItem href='/movies?page=1' text='Movies' />
           {/* <NavItem href='/tv-shows' text='TV Shows' /> */}
           {/* <NavItem href='/watch' text='Watch' /> */}
           <NavItem href='/watchlist' text='Watchlist' />

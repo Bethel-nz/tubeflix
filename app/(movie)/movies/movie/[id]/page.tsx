@@ -25,15 +25,15 @@ export default async function Page({ params: { id } }: Params) {
   const movie: Movie = await fetchMovie(id);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className=' mx-auto relative h-full w-[75dvw] md:w-[90dvw]'>
-        <div className='flex flex-wrap items-start space-y-4 lg:space-y-0 gap-x-4'>
-          <div className='relative w-full'>
-            <div className='w-full h-0 pb-[56.25%] rounded-md shadow-md'>
-              <VideoFrame imdb_Id={movie.id} tmdb_Id={movie.id} />
-            </div>
-          </div>
+    <Suspense
+      fallback={
+        <div className='h-screen w-screen flex items-center justify-center'>
+          Loading...
         </div>
+      }
+    >
+      <div className='h-[90dvh] w-full'>
+        <VideoFrame imdb_Id={movie.id} tmdb_Id={movie.id} />
       </div>
     </Suspense>
   );

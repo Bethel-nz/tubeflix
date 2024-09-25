@@ -19,7 +19,7 @@ const Cards = ({ movies }: CardsProps) => {
   };
 
   return (
-    <div className='grid grid-cols-3 xl:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 w-full gap-y-8 gap-x-3 h-full place-items-center'>
+    <div className='grid grid-cols-2 xl:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 w-full gap-y-8 gap-x-3 h-full place-items-center'>
       {movies?.map((movie: Movie) => (
         <Card
           key={movie.id}
