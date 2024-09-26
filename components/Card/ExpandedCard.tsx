@@ -77,7 +77,7 @@ const ExpandedCard = ({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, type: 'spring' }}
-      className='fixed inset-0 bg-black bg-opacity-40 z-[200] overflow-y-auto'
+      className='fixed inset-0 bg-black bg-opacity-40 z-50 overflow-y-auto'
       onClick={onCollapse}
     >
       <div className='min-h-screen flex items-center justify-center py-8'>
