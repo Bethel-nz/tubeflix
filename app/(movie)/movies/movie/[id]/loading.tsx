@@ -1,4 +1,4 @@
-import MovieLoading from '@/components/shared/Skeleton/MovieLoading';
+import MovieLoading from '@/components/shared/Skeleton/Loading';
 
 const Loading = () => {
   return (

@@ -29,7 +29,6 @@ const ExpandedCard = ({
   const params = useSearchParams();
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentMovie, setCurrentMovie] = useState<Movie>(movie);
-
   useEffect(() => {
     const id = params.get('id');
     if (id) {

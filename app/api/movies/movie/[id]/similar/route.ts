@@ -18,7 +18,7 @@ export async function GET(req: Request, { params: { id } }: Params) {
 
   try {
     // Fetch the movie details to get the genre IDs
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
+    const url = `${TMDB_URL}/movie/${id}/similar?api_key=${API_KEY}&language=en-US`;
     const options = {
       method: 'GET',
       headers: {
@@ -27,16 +27,8 @@ export async function GET(req: Request, { params: { id } }: Params) {
       },
     };
     const movieResponse = await fetch(url, options);
-    const movieData = await movieResponse.json();
-    const genreIds = movieData.genres
-      .map((genre: { id: number }) => genre.id)
-      .join(',');
 
-    // Fetch similar movies based on genre IDs
-    const response = await fetch(
-      `${TMDB_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreIds}&language=en-US&page=1`
-    );
-    const data = await response.json();
+    const data = await movieResponse.json();
     const similarMovies = data.results.slice(0, 9);
     return NextResponse.json({ similarMovies }, { status: 200 });
   } catch (error) {
