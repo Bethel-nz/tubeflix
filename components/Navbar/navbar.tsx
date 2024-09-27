@@ -72,12 +72,12 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
           <div className='flex items-center justify-end gap-8'>
-            <SearchBar defaultValue={query || ''} />
             <div className='hidden md:flex items-center space-x-4'>
+              <SearchBar defaultValue={query || ''} />
               <NavItem href='/watchlist' icon={Bookmark} text='Watchlist' />
             </div>
             <button
-              className='md:hidden flex items-center'
+              className=' flex items-center'
               onClick={() => setIsOpen(!isOpen)}
             >
               <svg
@@ -107,6 +107,8 @@ export const Navbar: React.FC = () => {
           ref={ref}
           className='flex flex-col items-center justify-center space-y-2 px-8 py-4'
         >
+          <SearchBar defaultValue={query || ''} />
+
           <NavItem href='/movies?page=1' text='Movies' />
           {/* <NavItem href='/tv-shows' text='TV Shows' /> */}
           {/* <NavItem href='/watch' text='Watch' /> */}

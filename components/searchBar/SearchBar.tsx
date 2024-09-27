@@ -83,7 +83,7 @@ const SearchBar = ({ defaultValue }: props) => {
         value={searchValue}
         onChange={handleInput}
         className={cn(
-          'p-2 focus:max-w-44 md:focus:max-w-96 max-w-14  transition-all transform-gpu ease-in-out rounded-md pl-10 peer',
+          'p-2 md:focus:max-w-96 max-w-full  transition-all transform-gpu ease-in-out rounded-md pl-10 peer',
           'bg-neutral-800',
           'focus-within:ring-accent-dark ring-offset-4',
           'outline outline-1 -outline-offset-1',
