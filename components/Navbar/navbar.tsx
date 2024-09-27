@@ -1,4 +1,4 @@
-'use client';
+y 6'use client';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Bookmark } from 'lucide-react';
@@ -74,7 +74,7 @@ export const Navbar: React.FC = () => {
           <div className='flex items-center justify-end gap-8'>
             <div className='hidden md:flex items-center space-x-4'>
               <div>
-                <SearchBar defaultValue={query || ''} />
+                <SearchBar defaultValue={query } />
               </div>
               <div>
                 <NavItem href='/watchlist' icon={Bookmark} text='Watchlist' />
@@ -111,7 +111,7 @@ export const Navbar: React.FC = () => {
           ref={ref}
           className='flex flex-col items-center justify-center space-y-2 px-8 py-4'
         >
-          <SearchBar defaultValue={query || ''} />
+          <SearchBar defaultValue={query} />
 
           <NavItem href='/movies?page=1' text='Movies' />
           {/* <NavItem href='/tv-shows' text='TV Shows' /> */}
