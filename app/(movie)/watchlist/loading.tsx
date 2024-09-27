@@ -1,5 +1,5 @@
 'use client';
-import CardSkeleton from '@/components/shared/Skeleton/CardSkeleton/CardSkeleton';
+import CardSkeleton from '@/components/shared/Skeleton/CardSkeleton';
 
 export default function Loading() {
   const skeletonArray = Array.from({ length: 20 }, (_, index) => (

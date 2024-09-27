@@ -19,6 +19,7 @@ export type Movie = {
   poster_path: string;
   release_date: string;
   title: string;
+  blur?: string;
   video: boolean;
 };
 

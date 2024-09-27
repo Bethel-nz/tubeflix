@@ -91,22 +91,24 @@ const Card = ({ movie, isExpanded, onExpand, onCollapse }: CardProps) => {
   return (
     <motion.div
       layout
-      className='relative'
+      className='relative w-full'
       initial={{ opacity: 0.95 }}
       animate={{ opacity: 1, transition: { duration: 0.3 } }}
     >
       <NormalCard movie={movie} onExpand={() => handleExpand(movie.id!)} />
 
-      <AnimatePresence mode='popLayout'>
+      <AnimatePresence>
         {isExpanded && (
-          <ExpandedCard
-            movie={movie as Movie}
-            trailers={cardState.trailers}
-            isFavourited={cardState.isFavourited}
-            onCollapse={onCollapse}
-            onAddToFavorites={() => addToFavorites(movie)}
-            similarMovies={cardState.similarMovies || []} // Ensure similarMovies is always an array
-          />
+          <div className='fixed inset-0 z-50 flex items-center justify-center'>
+            <ExpandedCard
+              movie={movie as Movie}
+              trailers={cardState.trailers}
+              isFavourited={cardState.isFavourited}
+              onCollapse={onCollapse}
+              onAddToFavorites={() => addToFavorites(movie)}
+              similarMovies={cardState.similarMovies || []}
+            />
+          </div>
         )}
       </AnimatePresence>
     </motion.div>
