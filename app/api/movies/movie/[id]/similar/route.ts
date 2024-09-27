@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 const API_KEY = process.env.API_KEY;
 const TOKEN = process.env.ACCESSTOKEN;
+const TMDB_URL = process.env.TMDB_URL;
 
 type Params = {
   params: {
@@ -33,7 +34,7 @@ export async function GET(req: Request, { params: { id } }: Params) {
 
     // Fetch similar movies based on genre IDs
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreIds}&language=en-US&page=1`
+      `${TMDB_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreIds}&language=en-US&page=1`
     );
     const data = await response.json();
     const similarMovies = data.results.slice(0, 9);

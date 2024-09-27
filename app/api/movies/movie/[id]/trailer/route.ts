@@ -2,6 +2,7 @@ import { Trailer } from '@/types/types';
 import { NextResponse } from 'next/server';
 
 const API_KEY = process.env.API_KEY;
+const TMDB_URL = process.env.TMDB_URL;
 
 export const dynamic = 'force-dynamic';
 const TOKEN = process.env.ACCESSTOKEN;
@@ -18,7 +19,7 @@ export async function GET(req: Request, { params: { id } }: Params) {
   }
 
   try {
-    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
+    const url = `${TMDB_URL}/movie/${id}/videos?api_key=${API_KEY}`;
     const options = {
       method: 'GET',
       headers: {

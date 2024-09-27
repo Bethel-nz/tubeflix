@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 const TOKEN = process.env.ACCESSTOKEN;
+const TMDB_URL = process.env.TMDB_URL;
 
 export async function GET(request: NextRequest) {
   try {
     const reqPage = request.nextUrl.searchParams.get('page') || 1;
-    const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${reqPage}`;
+    const url = `${TMDB_URL}/movie/popular?language=en-US&page=${reqPage}`;
     const options = {
       method: 'GET',
       headers: {

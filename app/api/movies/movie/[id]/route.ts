@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 const TOKEN = process.env.ACCESSTOKEN;
 const API_KEY = process.env.API_KEY;
+const TMDB_URL = process.env.TMDB_URL;
 
 type Params = {
   params: {
@@ -11,7 +12,7 @@ type Params = {
 };
 export async function GET(request: Request, { params: { id } }: Params) {
   try {
-    const url = `https://api.themoviedb.org/3/movie/${id}?&append_to_response=videos&api_key=${API_KEY}`;
+    const url = `${TMDB_URL}/movie/${id}?&append_to_response=videos&api_key=${API_KEY}`;
     const options = {
       method: 'GET',
       headers: {
