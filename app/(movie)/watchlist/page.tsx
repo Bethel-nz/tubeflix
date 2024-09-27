@@ -1,9 +1,9 @@
 'use client';
 import { Movie } from '@/types/types';
 import { useLocalStorage } from 'usehooks-ts';
-import Card from '@/components/Card';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import WatchListCard from '@/components/Card/WatchListCard';
 
 export default function Watchlist() {
   const [movies, setMovies] = useLocalStorage<Movie[]>('favouriteMovies', []);
@@ -13,12 +13,12 @@ export default function Watchlist() {
     setIsClient(true);
   }, []);
 
-  const removeFromWatchlist = (movieId: number) => {
-    setMovies(movies.filter((movie) => movie.id !== movieId));
+  const handleRemove = (id: number) => {
+    setMovies(movies.filter((movie) => movie.id !== id));
   };
 
   if (!isClient) {
-    return <div>Loading...</div>; // Or use a skeleton loader here
+    return <div>Loading...</div>;
   }
 
   return (
@@ -29,20 +29,11 @@ export default function Watchlist() {
       {movies.length >= 1 ? (
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
           {movies.map((movie: Movie) => (
-            <div key={movie.id} className='relative group'>
-              <Card
-                movie={movie}
-                isExpanded={false}
-                onExpand={() => {}}
-                onCollapse={() => {}}
-              />
-              <button
-                onClick={() => removeFromWatchlist(movie.id)}
-                className='absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200'
-              >
-                Remove
-              </button>
-            </div>
+            <WatchListCard
+              key={movie.id}
+              movie={movie}
+              onRemove={handleRemove}
+            />
           ))}
         </div>
       ) : (
