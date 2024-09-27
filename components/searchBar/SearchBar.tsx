@@ -1,7 +1,7 @@
 'use client';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useEffect, useState, KeyboardEvent, useRef } from 'react';
+import { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
 
 type props = {
   defaultValue: string;
@@ -20,14 +20,12 @@ const SearchBar = ({ defaultValue }: props) => {
   const handleSearch = (searchValue: string) => {
     if (searchValue !== '') {
       router.push(`/search?q=${searchValue}&page=1`);
-    } else if (searchValue === '' && !isFocused) {
-      router.push("/movies?page=1")
     }
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSearch(value);
+    if (debouncedValue && event.key === 'Enter') {
+      handleSearch(debouncedValue);
     }
   };
 
