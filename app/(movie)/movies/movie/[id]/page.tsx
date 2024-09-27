@@ -33,7 +33,7 @@ export default async function Page({ params: { id } }: Params) {
       }
     >
       <div className='h-[90dvh] w-full'>
-        <VideoFrame imdb_Id={movie.id} tmdb_Id={movie.id} />
+        <VideoFrame imdb_Id={movie.id} tmdb_Id={movie.id} fallBackId={id} />
       </div>
     </Suspense>
   );
