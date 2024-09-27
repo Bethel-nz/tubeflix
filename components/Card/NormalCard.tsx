@@ -19,7 +19,7 @@ const NormalCard = ({ movie, onExpand }: NormalCardProps) => {
 
   return (
     <motion.div
-      className='rounded-md relative group overflow-hidden shadow-md shadow-primary/-700 w-full cursor-pointer transition-all ease-in-out'
+      className='rounded-md group overflow-hidden shadow-md shadow-primary-700 w-full cursor-pointer transition-all ease-in-out z-10'
       onClick={onExpand}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
