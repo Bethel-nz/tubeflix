@@ -21,7 +21,7 @@ const SearchBar = ({ defaultValue }: props) => {
     if (searchValue !== '') {
       router.push(`/search?q=${searchValue}&page=1`);
     } else if (searchValue === '' && !isFocused) {
-      router.back();
+      router.push("/movies?page=1")
     }
   };
 
@@ -31,9 +31,6 @@ const SearchBar = ({ defaultValue }: props) => {
     }
   };
 
-  useEffect(() => {
-    handleSearch(debouncedValue);
-  }, [debouncedValue, router]);
 
   return (
     <div className='w-full flex'>
