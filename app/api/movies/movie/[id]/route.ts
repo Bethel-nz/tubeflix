@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+const TOKEN = process.env.ACCESSTOKEN;
 const API_KEY = process.env.API_KEY;
 
 type Params = {
@@ -14,6 +16,7 @@ export async function GET(request: Request, { params: { id } }: Params) {
       method: 'GET',
       headers: {
         accept: 'application/json',
+        Authorization: `Bearer ${TOKEN}`,
       },
     };
     const response = await fetch(url, options);

@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
+export const dynamic = 'force-dynamic';
 const API_KEY = process.env.API_KEY;
+const TOKEN = process.env.ACCESSTOKEN;
+
 type Params = {
   params: {
     id: string;
@@ -15,9 +17,15 @@ export async function GET(req: Request, { params: { id } }: Params) {
 
   try {
     // Fetch the movie details to get the genre IDs
-    const movieResponse = await fetch(
-      `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`
-    );
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+    const movieResponse = await fetch(url, options);
     const movieData = await movieResponse.json();
     const genreIds = movieData.genres
       .map((genre: { id: number }) => genre.id)
@@ -25,7 +33,7 @@ export async function GET(req: Request, { params: { id } }: Params) {
 
     // Fetch similar movies based on genre IDs
     const response = await fetch(
-      `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreIds}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreIds}&language=en-US&page=1`
     );
     const data = await response.json();
     const similarMovies = data.results.slice(0, 9);

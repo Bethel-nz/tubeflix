@@ -1,8 +1,10 @@
 import { Trailer } from '@/types/types';
 import { NextResponse } from 'next/server';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.API_KEY;
+
+export const dynamic = 'force-dynamic';
+const TOKEN = process.env.ACCESSTOKEN;
 
 type Params = {
   params: {
@@ -16,9 +18,15 @@ export async function GET(req: Request, { params: { id } }: Params) {
   }
 
   try {
-    const response = await fetch(
-      `${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`
-    );
+    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+    const response = await fetch(url, options);
     const data = await response.json();
     const trailer: Trailer[] = await data.results;
     return NextResponse.json(trailer, { status: 200 });
