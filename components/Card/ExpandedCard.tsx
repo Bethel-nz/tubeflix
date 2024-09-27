@@ -104,7 +104,7 @@ const ExpandedCard = ({
       >
         <div className='min-h-screen flex items-center justify-center py-8'>
           <motion.div
-            className='bg-black/80 backdrop-filter backdrop-blur-3xl rounded-lg p-5 w-[90vw] max-w-[800px] gap-x-4 max-h-[95vh] md:max-h-[80vh] relative shadow-lg space-x-3 flex justify-between md:flex-row flex-col'
+            className='bg-black/80 backdrop-filter backdrop-blur-3xl rounded-lg p-5 w-[90vw] max-w-[800px] gap-x-4 max-h-[95vh] md:max-h-[80vh] md:relative shadow-lg space-x-3 flex justify-between md:flex-row flex-col'
             onClick={(e) => e.stopPropagation()}
             layoutId={`movie-card-${id}`}
           >
