@@ -24,16 +24,28 @@ export default async function Movies({ searchParams }: Props) {
   const { results: result } = moviesData;
 
   return (
-    <div className='pt-20'>
+    <div className='mt-4'>
       {!q ? (
         <div>
           <p className='text-2xl text-white text-center mb-8'>Search A Movie</p>
         </div>
-      ) : (
-        <>
-          <Cards movies={result} />
-        </>
-      )}
+      ) : q && result.length === 0 ? (
+        <div>
+          <p className='text-2xl text-white text-center mb-8'>
+            No results found
+          </p>
+        </div>
+      ) : q && result.length > 0 ? (
+        <div>
+          <h3 className='text-2xl text-white text-center mb-4'>
+            Showing results for:{' '}
+            <span className='underline font-bold'>{q}</span>
+          </h3>
+          <div>
+            <Cards movies={result} />
+          </div>
+        </div>
+      ) : null}
       <div>
         <Pagination
           page={Number(page) || 1}

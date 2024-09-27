@@ -17,7 +17,6 @@ export async function GET(request: NextRequest) {
     };
     const response = await fetch(url, options);
     const data = await response.json();
-
     return NextResponse.json(data);
   } catch (error) {
     throw new Error(`Oops!! There was an error: \n${error}`);

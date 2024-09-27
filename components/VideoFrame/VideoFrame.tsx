@@ -16,12 +16,18 @@ const VideoFrame: React.FC<VideoFrameProps> = ({ imdb_Id, tmdb_Id }) => {
 
   return (
     <div className='w-full h-[90dvh]'>
-      <iframe
-        src={src}
-        allowFullScreen
-        className='w-full h-full object-cover'
-        title='Movie Trailer'
-      />
+      {src ? (
+        <iframe
+          src={src}
+          allowFullScreen
+          className='w-full h-full object-cover'
+          title='Movie Trailer'
+        />
+      ) : (
+        <div className='h-full w-full flex items-center justify-center'>
+          <p className='text-2xl text-white'>No video found</p>
+        </div>
+      )}
     </div>
   );
 };

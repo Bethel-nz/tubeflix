@@ -99,10 +99,10 @@ const ExpandedCard = ({
         animate='animate'
         exit='exit'
         variants={cardVariants}
-        className='fixed inset-0 bg-black bg-opacity-40 z-50 overflow-y-auto'
+        className='absolute inset-0 bg-black bg-opacity-40 z-50 overflow-y-auto'
         onClick={onCollapse}
       >
-        <div className='min-h-screen flex items-center justify-center py-8'>
+        <div className='min-h-dvh flex items-center justify-center py-8'>
           <motion.div
             className='bg-black/80 backdrop-filter backdrop-blur-3xl rounded-lg p-5 w-[90vw] max-w-[800px] gap-x-4 max-h-[95vh] md:max-h-[80vh] md:relative shadow-lg space-x-3 flex justify-between md:flex-row flex-col'
             onClick={(e) => e.stopPropagation()}
