@@ -73,11 +73,15 @@ export const Navbar: React.FC = () => {
           </div>
           <div className='flex items-center justify-end gap-8'>
             <div className='hidden md:flex items-center space-x-4'>
-              <SearchBar defaultValue={query || ''} />
-              <NavItem href='/watchlist' icon={Bookmark} text='Watchlist' />
+              <div>
+                <SearchBar defaultValue={query || ''} />
+              </div>
+              <div>
+                <NavItem href='/watchlist' icon={Bookmark} text='Watchlist' />
+              </div>
             </div>
             <button
-              className=' flex items-center'
+              className='md:hidden flex items-center'
               onClick={() => setIsOpen(!isOpen)}
             >
               <svg
