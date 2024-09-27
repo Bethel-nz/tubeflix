@@ -17,7 +17,9 @@ export default function Error({
   return (
     <div className='min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white'>
       <h2 className='text-4xl font-bold mb-4'>Oops! Something went wrong</h2>
-      <p className='text-xl mb-8'>We couldn&apos;t load the movies list.</p>
+      <p className='text-xl mb-8'>
+        We&apos;re sorry, but an unexpected error occurred.
+      </p>
       <div className='flex space-x-4'>
         <button
           onClick={reset}

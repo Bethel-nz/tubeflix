@@ -11,13 +11,16 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
+    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
 
   return (
     <div className='min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white'>
       <h2 className='text-4xl font-bold mb-4'>Oops! Something went wrong</h2>
-      <p className='text-xl mb-8'>We couldn&apos;t load the movies list.</p>
+      <p className='text-xl mb-8'>
+        We couldn&apos;t load the movie you requested.
+      </p>
       <div className='flex space-x-4'>
         <button
           onClick={reset}
@@ -26,10 +29,10 @@ export default function Error({
           Try again
         </button>
         <Link
-          href='/'
+          href='/movies?page=1'
           className='px-4 py-2 bg-amber-500 text-white rounded hover:bg-amber-600 transition-colors'
         >
-          Go to Home
+          Back to Movies
         </Link>
       </div>
       {error.digest && (
