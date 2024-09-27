@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
-const TOKEN = process.env.NEXT_PUBLIC_ACCESSTOKEN;
+const TOKEN = process.env.ACCESSTOKEN;
 const TMDB_URL = process.env.NEXT_PUBLIC_TMDB_URL;
 
 export async function GET(request: NextRequest) {

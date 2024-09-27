@@ -1,11 +1,11 @@
 import { Trailer } from '@/types/types';
 import { NextResponse } from 'next/server';
 
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_KEY = process.env.API_KEY;
 const TMDB_URL = process.env.NEXT_PUBLIC_TMDB_URL;
 
 export const dynamic = 'force-dynamic';
-const TOKEN = process.env.NEXT_PUBLIC_ACCESSTOKEN;
+const TOKEN = process.env.ACCESSTOKEN;
 
 type Params = {
   params: {
