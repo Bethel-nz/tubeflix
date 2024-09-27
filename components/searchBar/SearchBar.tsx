@@ -14,16 +14,16 @@ const SearchBar = ({ defaultValue }: props) => {
     setValue(event.target.value);
   };
   useEffect(() => {
-    if (value) {
-      router.push(`/search?q=${value}&page=1`);
+    if (debouncedValue) {
+      router.push(`/search?q=${debouncedValue}&page=1`);
     } else {
       router.push('/search');
     }
-  }, [debouncedValue, router, value]);
+  }, [debouncedValue, router]);
   return (
     <div className='w-full flex'>
       <input
-        className='mx-auto rounded-md bg-neutral-800 w-[20em] md:w-[30em] text-neutral-100 h-8 px-4 mb-8 mt-4 font-bold ring-1 focus-within:ring-amber-500 ring-offset-2'
+        className='mx-auto rounded-md bg-neutral-800 w-full md:w-[24em] text-neutral-100 h-8 px-4 mb-8 mt-4 font-bold ring-1 focus-within:ring-amber-500 ring-offset-2'
         type='text'
         placeholder='Search...'
         defaultValue={defaultValue}

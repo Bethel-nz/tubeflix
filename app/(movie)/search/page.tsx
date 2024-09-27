@@ -47,10 +47,12 @@ export default async function Movies({ searchParams }: Props) {
         </div>
       ) : null}
       <div>
-        <Pagination
-          page={Number(page) || 1}
-          totalPages={moviesData.total_pages}
-        />
+        {q && (
+          <Pagination
+            page={Number(page) || 1}
+            totalPages={moviesData.total_pages}
+          />
+        )}
       </div>
     </div>
   );
