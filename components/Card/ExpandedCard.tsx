@@ -243,11 +243,12 @@ function _Trailers({ trailers }: { trailers: Trailer[] | undefined }) {
             key={trailer.id}
             className='md:h-32 h-60 w-full md:w-48 rounded-md relative'
           >
-            {!loaded[index] && (
-              <div className='absolute inset-0 flex items-center justify-center bg-gray-800 rounded-md'>
-                <div className='bg-gray-700 h-40 rounded-md animate-pulse' />
-              </div>
-            )}
+            {!loaded[index] ||
+              (!trailer && (
+                <div className='absolute inset-0 flex items-center justify-center bg-gray-800 rounded-md'>
+                  <div className='bg-gray-700 h-40 rounded-md animate-pulse' />
+                </div>
+              ))}
             <a
               href={`https://www.youtube.com/watch?v=${trailer.key}`}
               target='_blank'
