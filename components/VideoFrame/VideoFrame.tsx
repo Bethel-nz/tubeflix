@@ -6,7 +6,7 @@ type VideoFrameProps = {
 };
 
 const VideoFrame: React.FC<VideoFrameProps> = ({ imdb_Id, tmdb_Id }) => {
-  let src = process.env.BASE_MOVIE_URL!;
+  let src = 'https://multiembed.mov/?';
 
   if (tmdb_Id) {
     src += `video_id=${tmdb_Id}&tmdb=1`;
