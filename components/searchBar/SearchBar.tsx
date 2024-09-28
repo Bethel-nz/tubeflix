@@ -1,11 +1,12 @@
 'use client';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
+import { ChangeEvent, useState, KeyboardEvent, useEffect, useRef } from 'react';
 
 type props = {
   defaultValue: string;
 };
+
 const SearchBar = ({ defaultValue }: props) => {
   const [value, setValue] = useState(defaultValue);
   const [isFocused, setIsFocused] = useState(false);
@@ -18,17 +19,30 @@ const SearchBar = ({ defaultValue }: props) => {
   };
 
   const handleSearch = (searchValue: string) => {
-    if (searchValue !== '') {
+    if (searchValue.trim() !== '') {
       router.push(`/search?q=${searchValue}&page=1`);
     }
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (debouncedValue && event.key === 'Enter') {
-      handleSearch(debouncedValue);
+    if (event.key === 'Enter' && value.trim() !== '') {
+      handleSearch(value); 
     }
   };
 
+  const handleBlur = () => {
+    setIsFocused(false);
+    if (value.trim() === '') {
+      router.push('/movies?page=1'); 
+    }
+  };
+
+  
+  useEffect(() => {
+    if (debouncedValue.trim() !== '') {
+      handleSearch(debouncedValue);
+    }
+  }, [debouncedValue]);
 
   return (
     <div className='w-full flex'>
@@ -41,12 +55,7 @@ const SearchBar = ({ defaultValue }: props) => {
         onChange={handleInput}
         onKeyDown={handleKeyPress}
         onFocus={() => setIsFocused(true)}
-        onBlur={() => {
-          setIsFocused(false);
-          if (value === '') {
-            router.back();
-          }
-        }}
+        onBlur={handleBlur}
       />
     </div>
   );
