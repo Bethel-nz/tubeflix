@@ -9,7 +9,6 @@ type props = {
 
 const SearchBar = ({ defaultValue }: props) => {
   const [value, setValue] = useState(defaultValue);
-  const [isFocused, setIsFocused] = useState(false);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const debouncedValue = useDebounce(value, 500);
@@ -19,7 +18,7 @@ const SearchBar = ({ defaultValue }: props) => {
   };
 
   const handleSearch = (searchValue: string) => {
-    if (searchValue.trim() !== '' && !isFocused) {
+    if (searchValue.trim() !== '') {
       router.push(`/search?q=${searchValue}&page=1`);
     }
   };
@@ -30,12 +29,6 @@ const SearchBar = ({ defaultValue }: props) => {
     }
   };
 
-  const handleBlur = () => {
-    setIsFocused(false);
-    if (value.trim() === '') {
-      router.push('/movies?page=1'); 
-    }
-  };
 
   
   useEffect(() => {
@@ -54,8 +47,6 @@ const SearchBar = ({ defaultValue }: props) => {
         value={value}
         onChange={handleInput}
         onKeyDown={handleKeyPress}
-        onFocus={() => setIsFocused(true)}
-        onBlur={handleBlur}
       />
     </div>
   );
