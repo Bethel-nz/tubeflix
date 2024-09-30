@@ -1,4 +1,4 @@
-y 6'use client';
+'use client';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Bookmark } from 'lucide-react';
