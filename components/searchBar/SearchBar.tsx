@@ -1,41 +1,31 @@
 'use client';
-import { useDebounce } from '@/hooks/useDebounce';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useState, KeyboardEvent, useEffect, useRef } from 'react';
+import { ChangeEvent, useState, KeyboardEvent, useRef } from 'react';
 
-type props = {
+type Props = {
   defaultValue: string;
 };
 
-const SearchBar = ({ defaultValue }: props) => {
+const SearchBar = ({ defaultValue }: Props) => {
   const [value, setValue] = useState(defaultValue);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
-  const debouncedValue = useDebounce(value, 500);
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
   const handleSearch = (searchValue: string) => {
-    if (searchValue !== '') {
-      router.push(`/search?q=${searchValue}&page=1`);
+    if (searchValue.trim() !== '') {
+      router.push(`/search?q=${encodeURIComponent(searchValue.trim())}&page=1`);
     }
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && value !== '') {
-      handleSearch(value); 
+    if (event.key === 'Enter') {
+      handleSearch(value);
     }
   };
-
-
-  
-  useEffect(() => {
-    if (debouncedValue !== '') {
-      handleSearch(debouncedValue);
-    }
-  }, [debouncedValue]);
 
   return (
     <div className='w-full flex'>
