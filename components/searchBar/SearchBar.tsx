@@ -18,13 +18,13 @@ const SearchBar = ({ defaultValue }: props) => {
   };
 
   const handleSearch = (searchValue: string) => {
-    if (searchValue.trim() !== '') {
+    if (searchValue !== '') {
       router.push(`/search?q=${searchValue}&page=1`);
     }
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && value.trim() !== '') {
+    if (event.key === 'Enter' && value !== '') {
       handleSearch(value); 
     }
   };
@@ -32,7 +32,7 @@ const SearchBar = ({ defaultValue }: props) => {
 
   
   useEffect(() => {
-    if (debouncedValue.trim() !== '') {
+    if (debouncedValue !== '') {
       handleSearch(debouncedValue);
     }
   }, [debouncedValue]);
