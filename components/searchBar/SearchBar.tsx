@@ -19,7 +19,7 @@ const SearchBar = ({ defaultValue }: props) => {
   };
 
   const handleSearch = (searchValue: string) => {
-    if (searchValue.trim() !== '') {
+    if (searchValue.trim() !== '' && !isFocused) {
       router.push(`/search?q=${searchValue}&page=1`);
     }
   };
